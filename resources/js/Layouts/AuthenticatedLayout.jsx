@@ -36,12 +36,12 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Chirps
                                 </NavLink>
-                                {/* <NavLink
-                                    href={route("users")}
-                                    active={route().current("users")}
+                                <NavLink
+                                    href={route("users.index")}
+                                    active={route().current("users.index")}
                                 >
                                     Users
-                                </NavLink> */}
+                                </NavLink>
                             </div>
                         </div>
 
@@ -152,12 +152,12 @@ export default function AuthenticatedLayout({ header, children }) {
                         >
                             Chirps
                         </ResponsiveNavLink>
-                        {/* <ResponsiveNavLink
-                            href={route("users")}
-                            active={route().current("users")}
+                        <ResponsiveNavLink
+                            href={route("users.index")}
+                            active={route().current("users.index")}
                         >
                             Chirps
-                        </ResponsiveNavLink> */}
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4">
