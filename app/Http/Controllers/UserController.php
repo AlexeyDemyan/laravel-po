@@ -19,8 +19,8 @@ class UserController extends Controller
         //     echo $user->name;
         // }
 
-        return Inertia::render('Entries/Index', [
-            'entries' => $users,
+        return Inertia::render('Users/Index', [
+            'users' => $users,
         ]);
     }
 
