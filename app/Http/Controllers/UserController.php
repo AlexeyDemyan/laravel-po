@@ -24,16 +24,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(): Response
-    {
-        $users = DB::select('select * from users');
+    // public function show(): Response
+    // {
+    //     $users = DB::select('select * from users');
 
-        foreach( $users as $user) {
-            echo $user->name;
-        }
+    //     foreach( $users as $user) {
+    //         echo $user->name;
+    //     }
 
-        return Inertia::render('Dashboard', [
-            'users' => User::all(),
-        ]);
-    }
+    //     return Inertia::render('Dashboard', [
+    //         'users' => User::all(),
+    //     ]);
+    // }
 }

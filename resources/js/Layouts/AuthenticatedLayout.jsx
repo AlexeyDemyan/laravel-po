@@ -42,6 +42,18 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Users
                                 </NavLink>
+                                <NavLink
+                                    href={route("POForm.index")}
+                                    active={route().current("POForm.index")}
+                                >
+                                    Form
+                                </NavLink>
+                                <NavLink
+                                    href={route("POList.index")}
+                                    active={route().current("POList.index")}
+                                >
+                                    PO List
+                                </NavLink>
                             </div>
                         </div>
 

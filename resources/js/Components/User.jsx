@@ -10,7 +10,7 @@ export default function User({ user }) {
                     <div>
                         <span className="text-gray-800">{user.name}</span>
                         <small className="ml-2 text-sm text-gray-600">
-                            Some data
+                            {user.email}
                         </small>
                     </div>
                 </div>
