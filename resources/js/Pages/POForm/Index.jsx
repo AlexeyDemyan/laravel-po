@@ -8,7 +8,9 @@ import { Head, useForm } from "@inertiajs/react";
 
 export default function Index() {
     const { data, setData } = useForm({
-        company: "Marsovin Winery Ltd"
+        company: "Marsovin Winery Ltd",
+        date: '',
+        supplier: ''
     });
 
     const submit = (e) => {
@@ -34,7 +36,7 @@ export default function Index() {
                         value={data.company}
                         onChange={(e) => setData('company', e.target.value)}
                     >
-                        <option value="Marsovin Winery Ltd" selected="selected">
+                        <option value="Marsovin Winery Ltd">
                             Marsovin Winery Ltd
                         </option>
                         <option value="CassarCamilleri Marketing, Sales &amp; Distribution Ltd">
