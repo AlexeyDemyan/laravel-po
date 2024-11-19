@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\POListController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\POEntryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,5 +36,6 @@ Route::resource('chirps', ChirpController::class)->only(['index', 'store', 'upda
 Route::resource('users', UserController::class);
 Route::resource('POList', POListController::class);
 Route::resource('POForm', FormController::class);
+Route::resource('POEntry', POEntryController::class);
 
 require __DIR__ . '/auth.php';

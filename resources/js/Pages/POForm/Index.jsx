@@ -7,7 +7,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import { Head, useForm } from "@inertiajs/react";
 
 export default function Index() {
-    const { data, setData } = useForm({
+    const { data, setData, post } = useForm({
         company: "Marsovin Winery Ltd",
         date: '',
         supplier: ''
@@ -18,6 +18,8 @@ export default function Index() {
 
         console.log("will post data here");
         console.log(data);
+
+        post(route('POEntry.store'));
     };
 
     return (
