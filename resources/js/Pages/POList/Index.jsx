@@ -12,7 +12,7 @@ export default function Index({ entries }) {
             <div className="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
                 <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
                     {entries.map((entry) => (
-                        <Entry entry={entry}/>
+                        <Entry key={entry.id} entry={entry}/>
                     ))}
                 </div>
             </div>
