@@ -7,7 +7,7 @@ export default function FormItemContainer({
         <div
             {...props}
             className={
-                `flex flex-row items-center mb-[5px] ` +
+                `flex flex-row items-center mb-[10px] ` +
                 className
             }
         >

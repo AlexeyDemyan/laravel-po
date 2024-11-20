@@ -9,6 +9,15 @@ class POEntry extends Model
     protected $fillable = [
         'company',
         'date',
-        'supplier'
+        'supplierAddress',
+        'supplierCode',
+        'supplier',
+        'deliveryDate',
+        'orderLines',
+        'paymentTerms',
+        'otherRemarks',
+        'discount',
+        'netTotalValue',
+        'priceIncludesVat'
     ];
 }

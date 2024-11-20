@@ -32,13 +32,20 @@ class POEntryController extends Controller
 
         // A better way to create an entry
 
-        $poentry = POEntry::create([
+        POEntry::create([
             'company' => $request->company,
             'date' => $request->date,
-            'supplier' => $request->supplier
+            'supplierAddress' => $request->supplierAddress,
+            'supplierCode' => $request->supplierCode,
+            'supplier' => $request->supplier,
+            'deliveryDate' => $request->deliveryDate,
+            'orderLines' => $request->orderLines,
+            'paymentTerms' => $request->paymentTerms,
+            'otherRemarks' => $request->otherRemarks,
+            'discount' => $request->discount,
+            'netTotalValue' => $request->netTotalValue,
+            'priceIncludesVat' => $request->priceIncludesVat,
         ]);
-
-        echo($poentry);
 
         return redirect(route('POForm.index'));
     }

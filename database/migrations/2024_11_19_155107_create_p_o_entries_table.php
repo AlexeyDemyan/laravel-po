@@ -14,8 +14,17 @@ return new class extends Migration
         Schema::create('p_o_entries', function (Blueprint $table) {
             $table->id();
             $table->string('company');
-            $table->string('date');
-            $table->string('supplier');
+            $table->string('date')->nullable();
+            $table->string('supplier')->nullable();
+            $table->string('supplierAddress')->nullable();
+            $table->string('supplierCode')->nullable();
+            $table->string('deliveryDate')->nullable();
+            $table->string('orderLines')->nullable();
+            $table->string('paymentTerms')->nullable();
+            $table->string('otherRemarks')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('netTotalValue')->nullable();
+            $table->string('priceIncludesVat');
             $table->timestamps();
         });
     }
