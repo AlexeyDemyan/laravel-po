@@ -1,7 +1,7 @@
 import TextInput from "./TextInput";
 import SecondaryButton from "./SecondaryButton";
 
-export default function OrderLine({ className = "", line, cb, ...props }) {
+export default function OrderLine({ className = "", line, cb, destroy, deleteDisabled, ...props }) {
     const { product, quantity, supplierRef, totalPrice, unitPrice } = line;
 
     return (
@@ -14,10 +14,8 @@ export default function OrderLine({ className = "", line, cb, ...props }) {
         >
             <SecondaryButton
                 className="mr-[10px]"
-                disabled={false}
-                onClick={() => {
-                    console.log("click!!");
-                }}
+                disabled={!deleteDisabled}
+                onClick={destroy}
             >
                 X
             </SecondaryButton>
@@ -43,13 +41,13 @@ export default function OrderLine({ className = "", line, cb, ...props }) {
                 }}
             />
             <TextInput
+                className="mr-[5px]"
                 value={unitPrice}
                 onChange={(e) => {
                     cb("unitPrice", e.target.value);
                 }}
             />
             <TextInput
-                className="mr-[5px]"
                 value={totalPrice}
                 onChange={(e) => {
                     cb("totalPrice", e.target.value);

@@ -12,7 +12,7 @@ import { Head, useForm } from "@inertiajs/react";
 export default function Index() {
     const [orderLines, setOrderLines] = useState([
         {
-            product: "test prod",
+            product: "",
             supplierRef: "",
             quantity: "",
             unitPrice: "",
@@ -131,21 +131,18 @@ export default function Index() {
                             <OrderLine
                                 key={index}
                                 line={line}
+                                deleteDisabled={index}
                                 cb={(prop, value) => {
-                                    console.log(prop);
-                                    console.log(value);
-                                    console.log(index);
-
                                     const stateCopy = [...orderLines];
-
-                                    console.log(stateCopy);
-
                                     stateCopy[index][prop] = value;
-
                                     setOrderLines(stateCopy);
-
-                                    console.log(stateCopy);
-
+                                    setData("orderLines", stateCopy);
+                                }}
+                                destroy={() => {
+                                    console.log(index)
+                                    const stateCopy = [...orderLines];
+                                    stateCopy.splice(index, 1);
+                                    setOrderLines(stateCopy);
                                     setData("orderLines", stateCopy);
                                 }}
                             />
@@ -156,7 +153,7 @@ export default function Index() {
                                 setOrderLines([
                                     ...orderLines,
                                     {
-                                        product: "Some else",
+                                        product: "",
                                         supplierRef: "",
                                         quantity: "",
                                         unitPrice: "",
