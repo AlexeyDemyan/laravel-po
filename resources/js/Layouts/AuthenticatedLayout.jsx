@@ -49,8 +49,8 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Form
                                 </NavLink>
                                 <NavLink
-                                    href={route("POList.index")}
-                                    active={route().current("POList.index")}
+                                    href={route("POEntry.index")}
+                                    active={route().current("POEntry.index")}
                                 >
                                     PO List
                                 </NavLink>

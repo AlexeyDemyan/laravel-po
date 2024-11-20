@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 use App\Models\POEntry;
 
 class POEntryController extends Controller
 {
+    public function index(): Response
+    {
+        return Inertia::render('POList/Index');
+    }
+
     public function store(Request $request): RedirectResponse
     {
         // Sort of default way to do create an entry
