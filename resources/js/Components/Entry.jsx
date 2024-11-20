@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Entry({entry}) {
-    console.log(entry)
 
     return (
         <div className="p-6 flex space-x-2">

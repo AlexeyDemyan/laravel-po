@@ -4,7 +4,6 @@ import { Head } from "@inertiajs/react";
 import User from "@/Components/User";
 
 export default function Index( {users} ) {
-    console.log(users);
 
     return (
         <AuthenticatedLayout>
