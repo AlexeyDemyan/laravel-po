@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import FormItemContainer from "@/Components/FormItemContainer";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import PrimaryButton from "@/Components/PrimaryButton";
+import OrderLinesHeader from "@/Components/OrderLinesHeader";
+import OrderLine from "@/Components/OrderLine";
+import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm } from "@inertiajs/react";
 
 export default function Index() {
+    const [orderLines, setOrderLines] = useState([
+        {
+            product: "test prod",
+            supplierRef: "",
+            quantity: "",
+            unitPrice: "",
+            totalPrice: "",
+        },
+    ]);
+
     const { data, setData, post } = useForm({
         company: "Marsovin Winery Ltd",
         date: "",
@@ -14,12 +27,12 @@ export default function Index() {
         supplierAddress: "",
         supplierCode: "",
         deliveryDate: "",
-        orderLines: "",
-        paymentTerms:"",
+        orderLines: orderLines,
+        paymentTerms: "",
         otherRemarks: "",
-        discount:"",
+        discount: "",
         netTotalValue: "",
-        priceIncludesVat: "Yes"
+        priceIncludesVat: "Yes",
     });
 
     const submit = (e) => {
@@ -82,72 +95,104 @@ export default function Index() {
                     />
                     <TextInput
                         value={data.supplierAddress}
-                        onChange={(e) => setData("supplierAddress", e.target.value)}
+                        onChange={(e) =>
+                            setData("supplierAddress", e.target.value)
+                        }
                     />
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel
-                        htmlFor="supplierCode"
-                        value="Supplier Code"
-                    />
+                    <InputLabel htmlFor="supplierCode" value="Supplier Code" />
                     <TextInput
                         value={data.supplierCode}
-                        onChange={(e) => setData("supplierCode", e.target.value)}
+                        onChange={(e) =>
+                            setData("supplierCode", e.target.value)
+                        }
                     />
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel
-                        htmlFor="deliveryDate"
-                        value="Delivery Date"
-                    />
+                    <InputLabel htmlFor="deliveryDate" value="Delivery Date" />
                     <input
                         type="date"
                         className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         value={data.deliveryDate}
-                        onChange={(e) => setData("deliveryDate", e.target.value)}
+                        onChange={(e) =>
+                            setData("deliveryDate", e.target.value)
+                        }
                     ></input>
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel
-                        htmlFor="orderLines"
-                        value="Order Lines"
-                    />
-                    <TextInput
-                        value={data.orderLines}
-                        onChange={(e) => setData("orderLines", e.target.value)}
-                    />
+                    <InputLabel htmlFor="orderLines" value="Order Lines" />
+                    <div>
+                        <OrderLinesHeader />
+                        {orderLines.map((line, index) => (
+                            <OrderLine
+                                key={index}
+                                line={line}
+                                cb={(prop, value) => {
+                                    console.log(prop);
+                                    console.log(value);
+                                    console.log(index);
+
+                                    const stateCopy = [...orderLines];
+
+                                    console.log(stateCopy);
+
+                                    stateCopy[index][prop] = value;
+
+                                    setOrderLines(stateCopy);
+
+                                    console.log(stateCopy);
+
+                                    setData("orderLines", stateCopy);
+                                }}
+                            />
+                        ))}
+                        <SecondaryButton
+                            disabled={false}
+                            onClick={() => {
+                                setOrderLines([
+                                    ...orderLines,
+                                    {
+                                        product: "Some else",
+                                        supplierRef: "",
+                                        quantity: "",
+                                        unitPrice: "",
+                                        totalPrice: "",
+                                    },
+                                ]);
+                                setData("orderLines", orderLines);
+                            }}
+                        >
+                            Add Line
+                        </SecondaryButton>
+                    </div>
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel
-                        htmlFor="paymentTerms"
-                        value="Payment Terms"
-                    />
+                    <InputLabel htmlFor="paymentTerms" value="Payment Terms" />
                     <TextInput
                         value={data.paymentTerms}
-                        onChange={(e) => setData("paymentTerms", e.target.value)}
+                        onChange={(e) =>
+                            setData("paymentTerms", e.target.value)
+                        }
                     />
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel
-                        htmlFor="otherRemarks"
-                        value="Other Remarks"
-                    />
+                    <InputLabel htmlFor="otherRemarks" value="Other Remarks" />
                     <TextInput
                         value={data.otherRemarks}
-                        onChange={(e) => setData("otherRemarks", e.target.value)}
+                        onChange={(e) =>
+                            setData("otherRemarks", e.target.value)
+                        }
                     />
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel
-                        htmlFor="discount"
-                        value="Discount"
-                    />
+                    <InputLabel htmlFor="discount" value="Discount" />
                     <TextInput
                         value={data.discount}
                         onChange={(e) => setData("discount", e.target.value)}
@@ -161,7 +206,9 @@ export default function Index() {
                     />
                     <TextInput
                         value={data.netTotalValue}
-                        onChange={(e) => setData("netTotalValue", e.target.value)}
+                        onChange={(e) =>
+                            setData("netTotalValue", e.target.value)
+                        }
                     />
                 </FormItemContainer>
 
@@ -173,14 +220,12 @@ export default function Index() {
                     <select
                         className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         value={data.priceIncludesVat}
-                        onChange={(e) => setData("priceIncludesVat", e.target.value)}
+                        onChange={(e) =>
+                            setData("priceIncludesVat", e.target.value)
+                        }
                     >
-                        <option value="Yes">
-                            Yes
-                        </option>
-                        <option value="No">
-                            No
-                        </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
                     </select>
                 </FormItemContainer>
 
