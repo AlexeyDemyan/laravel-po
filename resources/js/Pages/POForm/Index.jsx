@@ -123,7 +123,7 @@ export default function Index() {
                     ></input>
                 </FormItemContainer>
 
-                <FormItemContainer>
+                <FormItemContainer className="!items-start pt-[40px]">
                     <InputLabel htmlFor="orderLines" value="Order Lines" />
                     <div>
                         <OrderLinesHeader />
@@ -139,7 +139,6 @@ export default function Index() {
                                     setData("orderLines", stateCopy);
                                 }}
                                 destroy={() => {
-                                    console.log(index)
                                     const stateCopy = [...orderLines];
                                     stateCopy.splice(index, 1);
                                     setOrderLines(stateCopy);
