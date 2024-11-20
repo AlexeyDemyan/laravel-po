@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\POEntry;
+use Illuminate\Support\Facades\DB;
 
 class POEntryController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('POList/Index');
+
+        $entries = DB::select('select * from p_o_entries');
+
+        return Inertia::render('POList/Index', [
+            'entries' => $entries,
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
