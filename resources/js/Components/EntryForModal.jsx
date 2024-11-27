@@ -1,5 +1,6 @@
 import React from "react";
 import FormItemContainer from "./FormItemContainer";
+import SecondaryButton from "./SecondaryButton";
 
 export default function EntryForModal({ entry }) {
     console.log(entry);
@@ -36,14 +37,24 @@ export default function EntryForModal({ entry }) {
         "Price Includes VAT": priceIncludesVat,
     };
 
-    return Object.entries(entryToObject).map((item) => (
-        <FormItemContainer key={item.id} className="p-6">
-            <div className="block text-sm font-medium text-gray-700 min-w-[140px]">
-                <h2 className="text-lg font-medium text-gray-900">{item[0]}</h2>
-            </div>
-            <div>
-                <p className="mt-1 text-sm text-gray-600">{item[1]}</p>
-            </div>
-        </FormItemContainer>
-    ));
+    return (
+        <div>
+            {Object.entries(entryToObject).map((item) => (
+                <FormItemContainer key={item.id} className="p-2">
+                    <div className="block text-sm font-medium text-gray-700 min-w-[170px] ml-6 mr-6">
+                        <h2 className="text-lg font-medium text-gray-900">
+                            {item[0]}
+                        </h2>
+                    </div>
+                    <div>
+                        <p className="mt-1 text-sm text-gray-600 mr-6">
+                            {item[1]}
+                        </p>
+                    </div>
+                </FormItemContainer>
+            ))}
+            <SecondaryButton>Edit</SecondaryButton>
+            <SecondaryButton>Print</SecondaryButton>
+        </div>
+    );
 }
