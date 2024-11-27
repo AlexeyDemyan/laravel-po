@@ -50,7 +50,7 @@ export default function EntryForModal({ entry }) {
                 </span>
             </div>
             {Object.entries(entryToObject).map((item) => (
-                <FormItemContainer key={item.id} className="p-2">
+                <FormItemContainer key={item[0]} className="p-2">
                     <div className="block text-sm font-medium text-gray-700 min-w-[170px] ml-6 mr-6">
                         <h2 className="text-lg font-medium text-gray-900">
                             {item[0]}
