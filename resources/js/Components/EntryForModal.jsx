@@ -39,6 +39,16 @@ export default function EntryForModal({ entry }) {
 
     return (
         <div>
+            <div className="flex justify-end">
+                <span
+                    className="text-4xl text-right pr-3 hover:cursor-pointer"
+                    onClick={() => {
+                        console.log("close button click");
+                    }}
+                >
+                    &times;
+                </span>
+            </div>
             {Object.entries(entryToObject).map((item) => (
                 <FormItemContainer key={item.id} className="p-2">
                     <div className="block text-sm font-medium text-gray-700 min-w-[170px] ml-6 mr-6">
@@ -53,8 +63,12 @@ export default function EntryForModal({ entry }) {
                     </div>
                 </FormItemContainer>
             ))}
-            <SecondaryButton>Edit</SecondaryButton>
-            <SecondaryButton>Print</SecondaryButton>
+            <FormItemContainer>
+                <SecondaryButton>Edit</SecondaryButton>
+            </FormItemContainer>
+            <FormItemContainer>
+                <SecondaryButton>Print</SecondaryButton>
+            </FormItemContainer>
         </div>
     );
 }
