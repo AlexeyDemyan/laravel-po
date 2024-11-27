@@ -5,6 +5,8 @@ import { Head } from "@inertiajs/react";
 
 export default function Index({ entries }) {
 
+    console.log(entries);
+
     return (
         <AuthenticatedLayout>
             <Head title="POList" />

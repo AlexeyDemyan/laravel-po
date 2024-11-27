@@ -38,8 +38,6 @@ export default function Index() {
     const submit = (e) => {
         e.preventDefault();
 
-        console.log(data);
-
         post(route("POEntry.store"));
     };
 
@@ -225,7 +223,9 @@ export default function Index() {
                     </select>
                 </FormItemContainer>
 
-                <PrimaryButton className="ms-4" disabled={false}>
+                <PrimaryButton className="ms-4" disabled={false} onClick={() => {
+                    setData("orderLines", JSON.stringify(data.orderLines));
+                }}>
                     Submit PO
                 </PrimaryButton>
             </form>
