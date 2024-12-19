@@ -2,6 +2,10 @@ import React from "react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
 
+const convertOrderLineToText = (line) => {
+    return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `
+};
+
 export default function EntryForModal({ entry }) {
     console.log(entry);
 
@@ -29,7 +33,7 @@ export default function EntryForModal({ entry }) {
         "Supplier Address": supplierAddress,
         "Supplier Code": supplierCode,
         "Delivery Date": deliveryDate,
-        "Order Lines": orderLines,
+        "Order Lines": JSON.parse(orderLines),
         "Payment Terms": paymentTerms,
         "Other Remarks": otherRemarks,
         Discount: discount,
@@ -57,9 +61,13 @@ export default function EntryForModal({ entry }) {
                         </h2>
                     </div>
                     <div>
-                        <p className="mt-1 text-sm text-gray-600 mr-6">
-                            {item[1]}
-                        </p>
+                        {Array.isArray(item[1]) ? (
+                            item[1].map((line) => <p className="mt-1 text-sm text-gray-600 mr-6">{convertOrderLineToText(line)}</p>)
+                        ) : (
+                            <p className="mt-1 text-sm text-gray-600 mr-6">
+                                {item[1]}
+                            </p>
+                        )}
                     </div>
                 </FormItemContainer>
             ))}
