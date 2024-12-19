@@ -62,7 +62,7 @@ export default function EntryForModal({ entry }) {
                     </div>
                     <div>
                         {Array.isArray(item[1]) ? (
-                            item[1].map((line) => <p className="mt-1 text-sm text-gray-600 mr-6">{convertOrderLineToText(line)}</p>)
+                            item[1].map((line) => <p className="mt-1 text-sm text-gray-600 mr-6" key={item[1].indexOf(line)}>{convertOrderLineToText(line)}</p>)
                         ) : (
                             <p className="mt-1 text-sm text-gray-600 mr-6">
                                 {item[1]}
