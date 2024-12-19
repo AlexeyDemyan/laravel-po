@@ -3,7 +3,7 @@ import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
 
 const convertOrderLineToText = (line) => {
-    return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `
+    return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
 };
 
 export default function EntryForModal({ entry }) {
@@ -62,7 +62,14 @@ export default function EntryForModal({ entry }) {
                     </div>
                     <div>
                         {Array.isArray(item[1]) ? (
-                            item[1].map((line) => <p className="mt-1 text-sm text-gray-600 mr-6" key={item[1].indexOf(line)}>{convertOrderLineToText(line)}</p>)
+                            item[1].map((line) => (
+                                <p
+                                    className="mt-1 text-sm text-gray-600 mr-6"
+                                    key={item[1].indexOf(line)}
+                                >
+                                    {convertOrderLineToText(line)}
+                                </p>
+                            ))
                         ) : (
                             <p className="mt-1 text-sm text-gray-600 mr-6">
                                 {item[1]}
@@ -71,10 +78,8 @@ export default function EntryForModal({ entry }) {
                     </div>
                 </FormItemContainer>
             ))}
-            <FormItemContainer>
+            <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
                 <SecondaryButton>Edit</SecondaryButton>
-            </FormItemContainer>
-            <FormItemContainer>
                 <SecondaryButton>Print</SecondaryButton>
             </FormItemContainer>
         </div>
