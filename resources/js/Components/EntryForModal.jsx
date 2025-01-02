@@ -1,19 +1,13 @@
-import { React, useRef, useState } from "react";
+import React from "react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
-import { useReactToPrint } from "react-to-print";
-import PreviewPrint from "./PreviewPrint";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
 };
 
-export default function EntryForModal({ entry, onClick }) {
+export default function EntryForModal({ entry, onClose, onPrint }) {
     console.log(entry);
-
-    const contentRef = useRef(null);
-    const reactToPrintFn = useReactToPrint({ contentRef });
-    const [isPrintVisible, setIsPrintVisible] = useState(false);
 
     const {
         orderNumber,
@@ -52,7 +46,7 @@ export default function EntryForModal({ entry, onClick }) {
             <div className="flex justify-end">
                 <span
                     className="text-4xl text-right pr-3 hover:cursor-pointer"
-                    onClick={onClick}
+                    onClick={onClose}
                 >
                     &times;
                 </span>
@@ -86,14 +80,12 @@ export default function EntryForModal({ entry, onClick }) {
                 <SecondaryButton>Edit</SecondaryButton>
                 <SecondaryButton
                     onClick={() => {
-                        // previewPrint(entry);
-                        reactToPrintFn();
+                        onPrint();
                     }}
                 >
                     Print
                 </SecondaryButton>
             </FormItemContainer>
-            <div ref={contentRef}>{isPrintVisible ?? <PreviewPrint />}</div>
         </div>
     );
 }
