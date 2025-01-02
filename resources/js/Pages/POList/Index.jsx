@@ -12,7 +12,6 @@ export default function Index({ entries }) {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const closeModalOnEscape = (evt) => {
-        console.log("escape event");
         if (evt.key === "Escape") {
             setIsModalVisible(false);
         }

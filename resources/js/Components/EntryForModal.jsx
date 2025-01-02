@@ -1,6 +1,7 @@
 import React from "react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
+import { previewPrint } from "@/preview-print.js";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
@@ -10,7 +11,7 @@ export default function EntryForModal({ entry, onClick }) {
     console.log(entry);
 
     const {
-        id,
+        orderNumber,
         company,
         date,
         supplier,
@@ -26,7 +27,7 @@ export default function EntryForModal({ entry, onClick }) {
     } = entry;
 
     const entryToObject = {
-        "Order Number": id,
+        "Order Number": orderNumber,
         Company: company,
         Date: date,
         Supplier: supplier,
@@ -79,9 +80,7 @@ export default function EntryForModal({ entry, onClick }) {
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
                 <SecondaryButton>Edit</SecondaryButton>
                 <SecondaryButton
-                    onclick={() => {
-                        console.log("working on print");
-                    }}
+                    onClick={() => {previewPrint(entry)}}
                 >
                     Print
                 </SecondaryButton>
