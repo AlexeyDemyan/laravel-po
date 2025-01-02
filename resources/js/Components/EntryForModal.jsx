@@ -6,7 +6,7 @@ const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
 };
 
-export default function EntryForModal({ entry }) {
+export default function EntryForModal({ entry, onClick }) {
     console.log(entry);
 
     const {
@@ -46,9 +46,7 @@ export default function EntryForModal({ entry }) {
             <div className="flex justify-end">
                 <span
                     className="text-4xl text-right pr-3 hover:cursor-pointer"
-                    onClick={() => {
-                        console.log("close button click");
-                    }}
+                    onClick={onClick}
                 >
                     &times;
                 </span>
@@ -80,7 +78,13 @@ export default function EntryForModal({ entry }) {
             ))}
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
                 <SecondaryButton>Edit</SecondaryButton>
-                <SecondaryButton>Print</SecondaryButton>
+                <SecondaryButton
+                    onclick={() => {
+                        console.log("working on print");
+                    }}
+                >
+                    Print
+                </SecondaryButton>
             </FormItemContainer>
         </div>
     );
