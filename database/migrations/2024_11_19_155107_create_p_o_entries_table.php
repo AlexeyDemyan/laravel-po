@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('p_o_entries', function (Blueprint $table) {
-            $table->id();
+            $table->integer('orderNumber')->autoIncrement();
             $table->string('company');
             $table->date('date')->nullable();
             $table->string('supplier')->nullable();

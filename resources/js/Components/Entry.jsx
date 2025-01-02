@@ -3,7 +3,7 @@ import React from "react";
 export default function Entry({entry}) {
 
     return (
-        <div className="p-6 flex space-x-2">
+        <div className="p-6 flex space-x-2" onClick={() => {console.log(entry)}}>
             <div className="flex-1">
                 <div className="flex justify-between items-center">
                     <div>
