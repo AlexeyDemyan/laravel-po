@@ -18,6 +18,7 @@ export default function Index({ entries }) {
             setIsModalVisible(false);
         }
         document.removeEventListener("keydown", closeModalOnEscape);
+        setIsPrintVisible(true);
     };
 
     return (
@@ -34,6 +35,7 @@ export default function Index({ entries }) {
                                 )}
                                 onClose={() => {
                                     setIsModalVisible(false);
+                                    setIsPrintVisible(true);
                                 }}
                                 onPrint={() => {
                                     setIsPrintVisible(false);
