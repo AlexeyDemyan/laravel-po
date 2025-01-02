@@ -1,7 +1,8 @@
-import React from "react";
+import { React, useRef, useState } from "react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
-import { previewPrint } from "@/preview-print.js";
+import { useReactToPrint } from "react-to-print";
+import PreviewPrint from "./PreviewPrint";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
@@ -9,6 +10,10 @@ const convertOrderLineToText = (line) => {
 
 export default function EntryForModal({ entry, onClick }) {
     console.log(entry);
+
+    const contentRef = useRef(null);
+    const reactToPrintFn = useReactToPrint({ contentRef });
+    const [isPrintVisible, setIsPrintVisible] = useState(false);
 
     const {
         orderNumber,
@@ -80,11 +85,15 @@ export default function EntryForModal({ entry, onClick }) {
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
                 <SecondaryButton>Edit</SecondaryButton>
                 <SecondaryButton
-                    onClick={() => {previewPrint(entry)}}
+                    onClick={() => {
+                        // previewPrint(entry);
+                        reactToPrintFn();
+                    }}
                 >
                     Print
                 </SecondaryButton>
             </FormItemContainer>
+            <div ref={contentRef}>{isPrintVisible ?? <PreviewPrint />}</div>
         </div>
     );
 }
