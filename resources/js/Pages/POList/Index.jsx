@@ -9,7 +9,7 @@ import PreviewPrint from "@/Components/PreviewPrint";
 export default function Index({ entries }) {
     console.log(entries);
 
-    const [currentEntry, setCurrentEntry] = useState(11);
+    const [currentEntry, setCurrentEntry] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isPrintVisible, setIsPrintVisible] = useState(true);
 
@@ -43,8 +43,10 @@ export default function Index({ entries }) {
                             />
                         ) : (
                             <PreviewPrint
+                                entry={entries.find(
+                                    (elt) => elt.orderNumber === currentEntry
+                                )}
                                 onCancel={() => {
-                                    console.log("closing print menu");
                                     setIsPrintVisible(true);
                                 }}
                             />

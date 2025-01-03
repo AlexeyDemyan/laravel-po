@@ -3,7 +3,107 @@ import SecondaryButton from "./SecondaryButton";
 import FormItemContainer from "./FormItemContainer";
 import { useReactToPrint } from "react-to-print";
 
-export default function PreviewPrint({ onCancel }) {
+const orderLinesCount = 13;
+
+export default function PreviewPrint({ entry, onCancel }) {
+    console.log(entry);
+
+    const formatDate = (date) => {
+        const dateFromString = new Date(date);
+
+        return `${dateFromString.getDate()}/${
+            dateFromString.getMonth() + 1
+        }/${dateFromString.getFullYear()}`;
+    };
+
+    const {
+        created_at,
+        orderNumber,
+        company,
+        date,
+        supplier,
+        supplierAddress,
+        supplierCode,
+        deliveryDate,
+        orderLines,
+        paymentTerms,
+        otherRemarks,
+        discount,
+        netTotalValue,
+        priceIncludesVat,
+    } = entry;
+
+    const formattedDate = formatDate(date);
+
+    const isMarsovinWinery = () => {
+        if (company === "Marsovin Winery Ltd") {
+            return <div>&#10004;</div>;
+        }
+        return "";
+    };
+
+    const isCassarCamilleriMarketing = () => {
+        if (company === "CassarCamilleri Marketing, Sales & Distribution Ltd") {
+            return <div>&#10004;</div>;
+        }
+        return "";
+    };
+
+    const isViticulture = () => {
+        if (company === "Marsovin Viticulture Ltd") {
+            return <div>&#10004;</div>;
+        }
+        return "";
+    };
+
+    const createdYear = new Date(created_at).getFullYear();
+
+    const parsedOrderLines = JSON.parse(orderLines);
+    console.log(parsedOrderLines);
+
+    const renderedOrderLine = (line) => {
+        return (
+            <tr>
+                                    <td
+                                        style={{
+                                            minWidth: 400,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                        }}
+                                    >{line.product}</td>
+                                    <td
+                                        style={{
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                        }}
+                                    >{line.supplierRef}</td>
+                                    <td
+                                        style={{
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                        }}
+                                    >{line.quantity}</td>
+                                    <td
+                                        style={{
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                        }}
+                                    >{line.unitPrice}</td>
+                                    <td
+                                        style={{
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                        }}
+                                    >{line.totalPrice}</td>
+                                </tr>
+        )
+    }
+
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
 
@@ -104,7 +204,7 @@ export default function PreviewPrint({ onCancel }) {
                             marginTop: 20,
                         }}
                     >
-                        Purchase Order #
+                        Purchase Order # {createdYear}-{orderNumber}
                     </div>
                     <div
                         className="section section__company-list"
@@ -140,7 +240,7 @@ export default function PreviewPrint({ onCancel }) {
                                         verticalAlign: "top",
                                     }}
                                 >
-                                    &#10004;
+                                    {isMarsovinWinery()}
                                 </div>
                                 <div
                                     className="vat"
@@ -178,7 +278,7 @@ export default function PreviewPrint({ onCancel }) {
                                         border: "2px solid black",
                                     }}
                                 >
-                                    ✔
+                                    {isCassarCamilleriMarketing()}
                                 </div>
                                 <div
                                     className="vat"
@@ -215,7 +315,7 @@ export default function PreviewPrint({ onCancel }) {
                                         border: "2px solid black",
                                     }}
                                 >
-                                    ✔
+                                    {isViticulture()}
                                 </div>
                                 <div
                                     className="vat"
@@ -255,7 +355,9 @@ export default function PreviewPrint({ onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplier}
+                            </div>
                         </div>
                         <div
                             className="supplier-code"
@@ -277,7 +379,9 @@ export default function PreviewPrint({ onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplierCode}
+                            </div>
                         </div>
                         <div
                             className="supplier-address"
@@ -299,7 +403,9 @@ export default function PreviewPrint({ onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplierAddress}
+                            </div>
                         </div>
                         <div
                             className="supplier-date"
@@ -321,7 +427,9 @@ export default function PreviewPrint({ onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {formattedDate}
+                            </div>
                         </div>
                         <div
                             className="supplier-address"
@@ -883,6 +991,7 @@ export default function PreviewPrint({ onCancel }) {
                                         }}
                                     />
                                 </tr>
+                                {renderedOrderLine(parsedOrderLines[0])}
                             </tbody>
                         </table>
                     </div>

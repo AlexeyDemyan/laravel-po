@@ -7,7 +7,6 @@ const convertOrderLineToText = (line) => {
 };
 
 export default function EntryForModal({ entry, onClose, onPrint }) {
-    console.log(entry);
 
     const {
         orderNumber,
