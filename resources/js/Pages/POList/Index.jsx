@@ -42,7 +42,12 @@ export default function Index({ entries }) {
                                 }}
                             />
                         ) : (
-                            <PreviewPrint />
+                            <PreviewPrint
+                                onCancel={() => {
+                                    console.log("closing print menu");
+                                    setIsPrintVisible(true);
+                                }}
+                            />
                         )}
                     </Modal>
                     {entries.map((entry) => (
