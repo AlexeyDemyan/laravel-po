@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@inertiajs/react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
+import { formatDate } from "@/utils.js";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
@@ -27,11 +28,11 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
     const entryToObject = {
         "Order Number": orderNumber,
         Company: company,
-        Date: date,
+        Date: formatDate(date),
         Supplier: supplier,
         "Supplier Address": supplierAddress,
         "Supplier Code": supplierCode,
-        "Delivery Date": deliveryDate,
+        "Delivery Date": formatDate(deliveryDate),
         "Order Lines": JSON.parse(orderLines),
         "Payment Terms": paymentTerms,
         "Other Remarks": otherRemarks,

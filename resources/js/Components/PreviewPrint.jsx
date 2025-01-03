@@ -2,19 +2,12 @@ import { useRef } from "react";
 import SecondaryButton from "./SecondaryButton";
 import FormItemContainer from "./FormItemContainer";
 import { useReactToPrint } from "react-to-print";
+import { formatDate } from "@/utils.js";
 
 const orderLinesCount = 13;
 
 export default function PreviewPrint({ entry, onCancel }) {
     console.log(entry);
-
-    const formatDate = (date) => {
-        const dateFromString = new Date(date);
-
-        return `${dateFromString.getDate()}/${
-            dateFromString.getMonth() + 1
-        }/${dateFromString.getFullYear()}`;
-    };
 
     const {
         created_at,

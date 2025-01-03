@@ -9,6 +9,8 @@ import OrderLine from "@/Components/OrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm } from "@inertiajs/react";
 
+const maxOrderLinesCount = 10;
+
 export default function Index() {
     const [orderLines, setOrderLines] = useState([
         {
@@ -145,7 +147,7 @@ export default function Index() {
                             />
                         ))}
                         <SecondaryButton
-                            disabled={false}
+                            disabled={orderLines.length >= maxOrderLinesCount}
                             onClick={() => {
                                 setOrderLines([
                                     ...orderLines,

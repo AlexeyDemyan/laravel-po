@@ -1,4 +1,5 @@
 import React from "react";
+import { formatDate } from "@/utils.js";
 
 export default function Entry({entry, onClick}) {
 
@@ -9,7 +10,7 @@ export default function Entry({entry, onClick}) {
                     <div>
                         <span className="text-gray-800">{entry.company}</span>
                         <small className="ml-2 text-sm text-gray-600">
-                            {entry.date}
+                            {formatDate(entry.date)}
                         </small>
                         <small className="ml-2 text-sm text-gray-600">
                             {entry.supplier}
