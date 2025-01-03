@@ -61,48 +61,76 @@ export default function PreviewPrint({ entry, onCancel }) {
     const parsedOrderLines = JSON.parse(orderLines);
     console.log(parsedOrderLines);
 
-    const renderedOrderLine = (line) => {
+    const renderedOrderLine = (line, index) => {
         return (
-            <tr>
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    >{line.product}</td>
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    >{line.supplierRef}</td>
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    >{line.quantity}</td>
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    >{line.unitPrice}</td>
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    >{line.totalPrice}</td>
-                                </tr>
-        )
-    }
+            <tr key={index}>
+                <td
+                    style={{
+                        minWidth: 400,
+                        height: 25,
+                        textAlign: "center",
+                        border: "1px solid black",
+                    }}
+                >
+                    {line.product}
+                </td>
+                <td
+                    style={{
+                        height: 25,
+                        textAlign: "center",
+                        border: "1px solid black",
+                    }}
+                >
+                    {line.supplierRef}
+                </td>
+                <td
+                    style={{
+                        height: 25,
+                        textAlign: "center",
+                        border: "1px solid black",
+                    }}
+                >
+                    {line.quantity}
+                </td>
+                <td
+                    style={{
+                        height: 25,
+                        textAlign: "center",
+                        border: "1px solid black",
+                    }}
+                >
+                    {line.unitPrice}
+                </td>
+                <td
+                    style={{
+                        height: 25,
+                        textAlign: "center",
+                        border: "1px solid black",
+                    }}
+                >
+                    {line.totalPrice}
+                </td>
+            </tr>
+        );
+    };
+
+    const orderLinesFilledWithDuds = (lines) => {
+        let result = [...lines];
+
+        for (let i = 0; i < orderLinesCount - lines.length; i++) {
+            result.push({
+                product: "",
+                supplierRef: "",
+                quantity: "",
+                unitPrice: "",
+                totalPrice: "",
+            });
+        }
+
+        return result;
+    };
+
+    const linesWithDuds = orderLinesFilledWithDuds(parsedOrderLines);
 
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
@@ -497,501 +525,9 @@ export default function PreviewPrint({ entry, onCancel }) {
                                         Total Price €
                                     </th>
                                 </tr>
-                                <tr className="table-row-1">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-2">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-3">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-4">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-5">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-6">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-7">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-8">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-9">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-10">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-11">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-12">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                <tr className="table-row-13">
-                                    <td
-                                        style={{
-                                            minWidth: 400,
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                    <td
-                                        style={{
-                                            height: 25,
-                                            textAlign: "center",
-                                            border: "1px solid black",
-                                        }}
-                                    />
-                                </tr>
-                                {renderedOrderLine(parsedOrderLines[0])}
+                                {linesWithDuds.map((line) =>
+                                    renderedOrderLine(line)
+                                )}
                             </tbody>
                         </table>
                     </div>
