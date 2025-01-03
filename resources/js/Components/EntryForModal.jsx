@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@inertiajs/react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
 
@@ -7,7 +8,6 @@ const convertOrderLineToText = (line) => {
 };
 
 export default function EntryForModal({ entry, onClose, onPrint }) {
-
     const {
         orderNumber,
         company,
@@ -76,7 +76,18 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                 </FormItemContainer>
             ))}
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
-                <SecondaryButton>Edit</SecondaryButton>
+                <SecondaryButton
+                    onClick={() => {
+                        console.log("editing");
+                    }}
+                >
+                    <Link
+                        href={route("POForm.index")}
+                        active={route().current("POForm.index")}
+                    >
+                        Edit
+                    </Link>
+                </SecondaryButton>
                 <SecondaryButton
                     onClick={() => {
                         onPrint();
