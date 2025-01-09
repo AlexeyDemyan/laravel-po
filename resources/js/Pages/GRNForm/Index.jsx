@@ -36,6 +36,33 @@ export default function Index() {
         supplierInvoice: "",
         packingDetails: "",
         orderLines: orderLines,
+        totalItems: "",
+        hashTotalQuantity: "",
+        hashLineValue: "",
+        receivingStoreCostCenter: "",
+        remarks: "",
+        goodsReceivedBy: "",
+        freightCharges: "",
+        freightSupplierCode: "",
+        freightSupplierName: "",
+        insuranceCharges: "",
+        insuranceSupplierCode: "",
+        insuranceSupplierName: "",
+        handlingCharges: "",
+        handlingSupplierCode: "",
+        handlingSupplierName: "",
+        cartageCharges: "",
+        cartageSupplierCode: "",
+        cartageSupplierName: "",
+        otherCharges: "",
+        otherSupplierCode: "",
+        otherSupplierName: "",
+        vatCharges: "",
+        vatSupplierCode: "",
+        vatSupplierName: "",
+        depositCharges: "",
+        depositSupplierCode: "",
+        depositSupplierName: "",
     });
 
     const submit = (e) => {
@@ -290,8 +317,20 @@ export default function Index() {
                 </FormItemContainer>
 
                 <FormItemContainer className="!items-start pt-[40px]">
-                    Charges
+                    <InputLabel htmlFor="charges" value="Charges" />
                     <div>
+                        <div className="flex flex-row items-center mb-[10px] min-w-[700px]">
+                            <div className="w-[120px] "></div>
+                            <div className="w-[198px] mr-[5px] text-center">
+                                Amounts
+                            </div>
+                            <div className="w-[198px] mr-[5px] text-center">
+                                Supplier Code
+                            </div>
+                            <div className="w-[198px] mr-[5px] text-center">
+                                Supplier Name
+                            </div>
+                        </div>
                         <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
                             <InputLabel htmlFor="freight" value="Freight" />
                             <TextInput
@@ -305,14 +344,194 @@ export default function Index() {
                                 className="mr-[5px]"
                                 value={data.freightSupplierCode}
                                 onChange={(e) => {
-                                    setData("freightSupplierCode", e.target.value);
+                                    setData(
+                                        "freightSupplierCode",
+                                        e.target.value
+                                    );
                                 }}
                             />
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.freightSupplierName}
                                 onChange={(e) => {
-                                    setData("freightSupplierName", e.target.value);
+                                    setData(
+                                        "freightSupplierName",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
+                            <InputLabel htmlFor="insurance" value="Insurance" />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.insuranceCharges}
+                                onChange={(e) => {
+                                    setData("insuranceCharges", e.target.value);
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.insuranceSupplierCode}
+                                onChange={(e) => {
+                                    setData(
+                                        "insuranceSupplierCode",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.insuranceSupplierName}
+                                onChange={(e) => {
+                                    setData(
+                                        "insuranceSupplierName",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
+                            <InputLabel htmlFor="handling" value="Handling" />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.handlingCharges}
+                                onChange={(e) => {
+                                    setData("handlingCharges", e.target.value);
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.handlingSupplierCode}
+                                onChange={(e) => {
+                                    setData(
+                                        "handlingSupplierCode",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.handlingSupplierName}
+                                onChange={(e) => {
+                                    setData(
+                                        "handlingSupplierName",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
+                            <InputLabel htmlFor="cartage" value="Cartage" />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.cartageCharges}
+                                onChange={(e) => {
+                                    setData("cartageCharges", e.target.value);
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.cartageSupplierCode}
+                                onChange={(e) => {
+                                    setData(
+                                        "cartageSupplierCode",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.cartageSupplierName}
+                                onChange={(e) => {
+                                    setData(
+                                        "cartageSupplierName",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
+                            <InputLabel htmlFor="other" value="Other" />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.otherCharges}
+                                onChange={(e) => {
+                                    setData("otherCharges", e.target.value);
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.otherSupplierCode}
+                                onChange={(e) => {
+                                    setData(
+                                        "otherSupplierCode",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.otherSupplierName}
+                                onChange={(e) => {
+                                    setData(
+                                        "otherSupplierName",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
+                            <InputLabel htmlFor="vat" value="VAT" />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.vatCharges}
+                                onChange={(e) => {
+                                    setData("vatCharges", e.target.value);
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.vatSupplierCode}
+                                onChange={(e) => {
+                                    setData("vatSupplierCode", e.target.value);
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.vatSupplierName}
+                                onChange={(e) => {
+                                    setData("vatSupplierName", e.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
+                            <InputLabel htmlFor="deposit" value="Deposit" />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.depositCharges}
+                                onChange={(e) => {
+                                    setData("depositCharges", e.target.value);
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.depositSupplierCode}
+                                onChange={(e) => {
+                                    setData(
+                                        "depositSupplierCode",
+                                        e.target.value
+                                    );
+                                }}
+                            />
+                            <TextInput
+                                className="mr-[5px]"
+                                value={data.depositSupplierName}
+                                onChange={(e) => {
+                                    setData(
+                                        "depositSupplierName",
+                                        e.target.value
+                                    );
                                 }}
                             />
                         </div>
