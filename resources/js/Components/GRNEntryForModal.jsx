@@ -8,37 +8,37 @@ const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
 };
 
-export default function EntryForModal({ entry, onClose, onPrint }) {
+export default function GRNEntryForModal({ entry, onClose, onPrint }) {
     const {
         orderNumber,
         company,
-        date,
         supplier,
-        supplierAddress,
+        country,
+        currency,
+        exchangeRate,
+        poreference,
+        receivedDate,
+        originCountry,
         supplierCode,
-        deliveryDate,
+        supplierInvoice,
+        packingDetails,
         orderLines,
-        paymentTerms,
-        otherRemarks,
-        discount,
-        netTotalValue,
-        priceIncludesVat,
     } = entry;
 
     const entryToObject = {
         "Order Number": orderNumber,
         Company: company,
-        Date: formatDate(date),
         Supplier: supplier,
-        "Supplier Address": supplierAddress,
+        Country: country,
+        Currency: currency,
+        ExchangeRate: exchangeRate,
+        "P/Order reference": poreference,
+        "Received Date": formatDate(receivedDate),
+        "Country of Origin": originCountry,
         "Supplier Code": supplierCode,
-        "Delivery Date": formatDate(deliveryDate),
+        "Supplier Invoice": supplierInvoice,
+        "Packing Details": packingDetails,
         "Order Lines": JSON.parse(orderLines),
-        "Payment Terms": paymentTerms,
-        "Other Remarks": otherRemarks,
-        Discount: discount,
-        "Net Total Value": netTotalValue,
-        "Price Includes VAT": priceIncludesVat,
     };
 
     return (
@@ -83,7 +83,7 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                     }}
                 >
                     <Link
-                        href={route("POForm.index")}
+                        href={route("GRNForm.index")}
                     >
                         Edit
                     </Link>
