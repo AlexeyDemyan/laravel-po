@@ -60,7 +60,12 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     GRN Form
                                 </NavLink>
-                                <NavLink>GRN List</NavLink>
+                                <NavLink
+                                    href={route("GRNEntry.index")}
+                                    active={route().current("GRNEntry.index")}
+                                >
+                                    GRN List
+                                </NavLink>
                             </div>
                         </div>
 

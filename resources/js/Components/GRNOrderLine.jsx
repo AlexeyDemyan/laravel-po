@@ -37,7 +37,7 @@ export default function GRNOrderLine({
                 className="mr-[5px]"
                 value={supplierRef}
                 onChange={(e) => {
-                    cb("product", e.target.value);
+                    cb("supplierRef", e.target.value);
                 }}
             />
             <TextInput

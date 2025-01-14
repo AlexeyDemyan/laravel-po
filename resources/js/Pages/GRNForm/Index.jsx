@@ -68,7 +68,7 @@ export default function Index() {
     const submit = (e) => {
         e.preventDefault();
 
-        // post(route("POEntry.store"));
+        post(route("GRNEntry.store"));
     };
 
     return (
@@ -545,7 +545,7 @@ export default function Index() {
                         setData("orderLines", JSON.stringify(data.orderLines));
                     }}
                 >
-                    Submit PO
+                    Submit GRN
                 </PrimaryButton>
             </form>
         </AuthenticatedLayout>

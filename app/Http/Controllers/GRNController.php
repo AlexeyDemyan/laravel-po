@@ -9,17 +9,17 @@ use Inertia\Response;
 use App\Models\GRNEntry;
 use Illuminate\Support\Facades\DB;
 
-class POEntryController extends Controller
+class GRNController extends Controller
 {
-    // public function index(): Response
-    // {
+    public function index(): Response
+    {
 
-    //     $entries = DB::select('select * from p_o_entries');
+        $entries = DB::select('select * from g_r_n_entries');
 
-    //     return Inertia::render('GRNList/Index', [
-    //         'entries' => $entries,
-    //     ]);
-    // }
+        return Inertia::render('GRNList/Index', [
+            'entries' => $entries,
+        ]);
+    }
 
     public function store(Request $request): RedirectResponse
     {

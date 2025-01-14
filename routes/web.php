@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\POEntryController;
 use App\Http\Controllers\GRNFormController;
+use App\Http\Controllers\GRNController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,5 +38,6 @@ Route::resource('users', UserController::class);
 Route::resource('POForm', FormController::class);
 Route::resource('POEntry', POEntryController::class);
 Route::resource('GRNForm', GRNFormController::class);
+Route::resource('GRNEntry', GRNController::class);
 
 require __DIR__ . '/auth.php';
