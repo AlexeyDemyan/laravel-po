@@ -4,7 +4,7 @@ import FormItemContainer from "./FormItemContainer";
 import { useReactToPrint } from "react-to-print";
 import { formatDate } from "@/utils.js";
 
-const orderLinesCount = 13;
+const orderLinesCount = 7;
 
 export default function GRNPreviewPrint({ entry, onCancel }) {
     console.log(entry);
@@ -13,20 +13,47 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
         created_at,
         orderNumber,
         company,
-        date,
         supplier,
-        supplierAddress,
+        country,
+        currency,
+        exchangeRate,
+        poreference,
+        receivedDate,
+        originCountry,
         supplierCode,
-        deliveryDate,
+        supplierInvoice,
+        packingDetails,
         orderLines,
-        paymentTerms,
-        otherRemarks,
-        discount,
-        netTotalValue,
-        priceIncludesVat,
+        totalItems,
+        hashTotalQuantity,
+        hashLineValue,
+        receivingStoreCostCenter,
+        remarks,
+        goodsReceivedBy,
+        freightCharges,
+        freightSupplierCode,
+        freightSupplierName,
+        insuranceCharges,
+        insuranceSupplierCode,
+        insuranceSupplierName,
+        handlingCharges,
+        handlingSupplierCode,
+        handlingSupplierName,
+        cartageCharges,
+        cartageSupplierCode,
+        cartageSupplierName,
+        otherCharges,
+        otherSupplierCode,
+        otherSupplierName,
+        vatCharges,
+        vatSupplierCode,
+        vatSupplierName,
+        depositCharges,
+        depositSupplierCode,
+        depositSupplierName,
     } = entry;
 
-    const formattedDate = formatDate(date);
+    const formattedDate = formatDate(receivedDate);
 
     const isMarsovinWinery = () => {
         if (company === "Marsovin Winery Ltd") {
@@ -59,7 +86,16 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
             <tr key={index}>
                 <td
                     style={{
-                        minWidth: 400,
+                        height: 25,
+                        textAlign: "center",
+                        border: "1px solid black",
+                    }}
+                >
+                    {line.supplierRef}
+                </td>
+                <td
+                    style={{
+                        minWidth: 450,
                         height: 25,
                         textAlign: "center",
                         border: "1px solid black",
@@ -74,7 +110,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                         border: "1px solid black",
                     }}
                 >
-                    {line.supplierRef}
+                    {line.quantityOrdered}
                 </td>
                 <td
                     style={{
@@ -83,7 +119,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                         border: "1px solid black",
                     }}
                 >
-                    {line.quantity}
+                    {line.quantityReceived}
                 </td>
                 <td
                     style={{
@@ -92,7 +128,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                         border: "1px solid black",
                     }}
                 >
-                    {line.unitPrice}
+                    {line.lineValue}
                 </td>
                 <td
                     style={{
@@ -101,7 +137,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                         border: "1px solid black",
                     }}
                 >
-                    {line.totalPrice}
+                    {line.dutyLevy}
                 </td>
             </tr>
         );
@@ -281,7 +317,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                         style={{
                             display: "grid",
                             gridTemplateColumns: "500px 500px",
-                            gridTemplateRows: "50px 50px 50px",
+                            gridTemplateRows: "30px 30px 30px 30px 30px",
                             marginBottom: 20,
                         }}
                     >
@@ -310,7 +346,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             </div>
                         </div>
                         <div
-                            className="supplier-code"
+                            className="received-date"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -318,19 +354,19 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="supplier-code--title"
+                                className="received-date--title"
                                 style={{ width: 140 }}
                             >
-                                Supplier Code
+                                Date Received
                             </div>
                             <div
-                                className="supplier-code--text"
+                                className="received-date--text"
                                 style={{
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
                             >
-                                {supplierCode}
+                                {receivedDate}
                             </div>
                         </div>
                         <div
@@ -345,7 +381,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 className="supplier-address--title"
                                 style={{ width: 140 }}
                             >
-                                Address
+                                Country
                             </div>
                             <div
                                 className="supplier-address--text"
@@ -354,7 +390,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                     borderBottom: "1px solid black",
                                 }}
                             >
-                                {supplierAddress}
+                                {country}
                             </div>
                         </div>
                         <div
@@ -369,7 +405,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 className="supplier-date--title"
                                 style={{ width: 140 }}
                             >
-                                Date
+                                Country of Origin
                             </div>
                             <div
                                 className="supplier-date--text"
@@ -378,7 +414,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                     borderBottom: "1px solid black",
                                 }}
                             >
-                                {formattedDate}
+                                {originCountry}
                             </div>
                         </div>
                         <div
@@ -392,14 +428,18 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="supplier-address--title"
                                 style={{ width: 140 }}
-                            />
+                            >
+                                Currency
+                            </div>
                             <div
                                 className="supplier-address--text"
                                 style={{
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {currency}
+                            </div>
                         </div>
                         <div
                             className="supplier-order"
@@ -413,7 +453,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 className="supplier-order--title"
                                 style={{ width: 140 }}
                             >
-                                Order
+                                Supplier Code
                             </div>
                             <div
                                 className="supplier-order--text"
@@ -421,7 +461,105 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplierCode}
+                            </div>
+                        </div>
+                        <div
+                            className="supplier-order"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="supplier-order--title"
+                                style={{ width: 180 }}
+                            >
+                                Exhange Rate EUR 1 =
+                            </div>
+                            <div
+                                className="supplier-order--text"
+                                style={{
+                                    width: 260,
+                                    borderBottom: "1px solid black",
+                                }}
+                            >
+                                {exchangeRate}
+                            </div>
+                        </div>
+                        <div
+                            className="supplier-order"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="supplier-order--title"
+                                style={{ width: 140 }}
+                            >
+                                Supplier Invoice
+                            </div>
+                            <div
+                                className="supplier-order--text"
+                                style={{
+                                    width: 300,
+                                    borderBottom: "1px solid black",
+                                }}
+                            >
+                                {supplierInvoice}
+                            </div>
+                        </div>
+                        <div
+                            className="supplier-order"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="supplier-order--title"
+                                style={{ width: 140 }}
+                            >
+                                P/Order Ref
+                            </div>
+                            <div
+                                className="supplier-order--text"
+                                style={{
+                                    width: 300,
+                                    borderBottom: "1px solid black",
+                                }}
+                            >
+                                {poreference}
+                            </div>
+                        </div>
+                        <div
+                            className="supplier-order"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="supplier-order--title"
+                                style={{ width: 140 }}
+                            >
+                                Packing Details
+                            </div>
+                            <div
+                                className="supplier-order--text"
+                                style={{
+                                    width: 300,
+                                    borderBottom: "1px solid black",
+                                }}
+                            >
+                                {packingDetails}
+                            </div>
                         </div>
                     </div>
                     <div
@@ -432,19 +570,22 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             <tbody>
                                 <tr>
                                     <th style={{ border: "3px solid black" }}>
-                                        Product
-                                    </th>
-                                    <th style={{ border: "3px solid black" }}>
                                         Supplier Ref
                                     </th>
                                     <th style={{ border: "3px solid black" }}>
-                                        Quantity
+                                        Product
                                     </th>
                                     <th style={{ border: "3px solid black" }}>
-                                        Unit Price €
+                                        QTY Ordered
                                     </th>
                                     <th style={{ border: "3px solid black" }}>
-                                        Total Price €
+                                        Qty Recd in Good Order
+                                    </th>
+                                    <th style={{ border: "3px solid black" }}>
+                                        Line value in EUR
+                                    </th>
+                                    <th style={{ border: "3px solid black" }}>
+                                        Duty/Levy in EUR
                                     </th>
                                 </tr>
                                 {linesWithDuds.map((line) =>
@@ -456,9 +597,9 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                     <div
                         className="section section__bottom-info"
                         style={{
-                            display: "grid",
-                            gridTemplateColumns: "500px 500px",
-                            gridTemplateRows: "50px 50px 120px",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            marginTop: 20,
                         }}
                     >
                         <div
@@ -473,15 +614,17 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 className="delivery-date--title"
                                 style={{ width: 140 }}
                             >
-                                Delivery Date
+                                Total Items
                             </div>
                             <div
                                 className="delivery-date--text"
                                 style={{
-                                    width: 300,
+                                    width: 150,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {totalItems}
+                            </div>
                         </div>
                         <div
                             className="discount"
@@ -495,15 +638,17 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 className="discount--title"
                                 style={{ width: 140 }}
                             >
-                                Discount
+                                Hash Total Qty
                             </div>
                             <div
                                 className="discount--text"
                                 style={{
-                                    width: 300,
+                                    width: 150,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {hashTotalQuantity}
+                            </div>
                         </div>
                         <div
                             className="payment-terms"
@@ -517,81 +662,113 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 className="payment-terms--title"
                                 style={{ width: 140 }}
                             >
-                                Payment Terms
+                                Hash Line Value
                             </div>
                             <div
                                 className="payment-terms--text"
                                 style={{
-                                    width: 300,
+                                    width: 150,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {hashLineValue}
+                            </div>
                         </div>
+                    </div>
+                    <div
+                        className="section"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            border: "1px solid black",
+                            padding: 10,
+                            paddingRight: 100,
+                            marginTop: 10,
+                        }}
+                    >
                         <div
-                            className="net-total-value"
+                            className="receivingstore"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
-                                alignItems: "end",
                             }}
                         >
                             <div
-                                className="net-total-value--title"
-                                style={{ width: 140 }}
-                            >
-                                Net Total Value
-                            </div>
-                            <div
-                                className="net-total-value--text"
+                                className="receivingstore--title"
                                 style={{
                                     width: 300,
-                                    borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                Receiving Store / Cost Centre
+                            </div>
+                            <div
+                                className="receivingstore--text"
+                                style={{
+                                    width: 650,
+                                    borderBottom: "1px dotted black",
+                                }}
+                            >
+                                {receivingStoreCostCenter}
+                            </div>
                         </div>
                         <div
-                            className="other-remarks"
+                            className="remarks"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
-                                alignItems: "end",
                             }}
                         >
                             <div
-                                className="other-remarks--title"
-                                style={{ width: 140 }}
-                            >
-                                Other Remarks
-                            </div>
-                            <div
-                                className="other-remarks--text"
+                                className="remarks--title"
                                 style={{
                                     width: 300,
-                                    borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                Remarks
+                            </div>
+                            <div
+                                className="remarks--text"
+                                style={{
+                                    width: 650,
+                                    borderBottom: "1px dotted black",
+                                }}
+                            >
+                                {remarks}
+                            </div>
                         </div>
                         <div
-                            className="price-includes-vat"
+                            className="goodsreceivedby"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
-                                alignItems: "end",
                             }}
                         >
                             <div
-                                className="price-includes-vat--title"
-                                style={{ width: 140 }}
-                            >
-                                Price Includes VAT
-                            </div>
-                            <div
-                                className="price-includes-vat--text"
+                                className="goodsreceivedby--title"
                                 style={{
                                     width: 300,
-                                    borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                Goods Received By
+                            </div>
+                            <div
+                                className="goodsreceivedby--text"
+                                style={{
+                                    width: 650,
+                                    borderBottom: "1px dotted black",
+                                }}
+                            >
+                                {goodsReceivedBy}
+                            </div>
+                        </div>
+                        <div
+                            className="signature"
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <p>(Signature & Name in full)</p>
                         </div>
                     </div>
                     <footer
@@ -600,63 +777,12 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "space-between",
+                            width: "100%",
+                            height: 50,
+                            border: "1px solid black",
+                            marginTop: 50,
                         }}
-                    >
-                        <div className="conditions">
-                            <div
-                                className="conditions-header"
-                                style={{
-                                    marginTop: 20,
-                                    height: 20,
-                                    fontWeight: 600,
-                                }}
-                            >
-                                <p>Conditions:</p>
-                            </div>
-                            <div className="conditions-list">
-                                <ul>
-                                    <li>
-                                        <p>
-                                            Please issue Delivery Note / Invoice
-                                            to the above indicated company
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            Please quote P/O No on Delivery Note
-                                            / Invoice
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            For Local Deliveries please deliver
-                                            between 7:30 - 10:45 &amp; 11:30 -
-                                            15:00
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            All deliveries are to be consigned
-                                            to Stores Personnel only
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="signature" style={{ paddingTop: 100 }}>
-                            <p
-                                className="signature-text"
-                                style={{
-                                    textAlign: "center",
-                                    width: 300,
-                                    borderTop: "1px solid black",
-                                    paddingTop: 30,
-                                }}
-                            >
-                                Authorised Signature
-                            </p>
-                        </div>
-                    </footer>
+                    ></footer>
                 </div>
             </div>
 
