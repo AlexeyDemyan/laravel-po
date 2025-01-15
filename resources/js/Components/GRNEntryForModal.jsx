@@ -22,7 +22,6 @@ export default function GRNEntryForModal({ entry, onClose, onPrint }) {
         supplierCode,
         supplierInvoice,
         packingDetails,
-        orderLines,
     } = entry;
 
     const entryToObject = {
@@ -38,7 +37,6 @@ export default function GRNEntryForModal({ entry, onClose, onPrint }) {
         "Supplier Code": supplierCode,
         "Supplier Invoice": supplierInvoice,
         "Packing Details": packingDetails,
-        "Order Lines": JSON.parse(orderLines),
     };
 
     return (

@@ -18,7 +18,7 @@ class GRNEntry extends Model
         'supplierCode',
         'supplierInvoice',
         'packingDetails',
-        'orderLines: orderLines',
+        'orderLines',
         'totalItems',
         'hashTotalQuantity',
         'hashLineValue',
