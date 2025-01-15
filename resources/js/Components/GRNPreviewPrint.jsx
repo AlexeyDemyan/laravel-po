@@ -189,13 +189,16 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                         style={{
                             display: "flex",
                             justifyContent: "space-around",
-                            marginTop: 20,
+                            marginTop: 80,
+                            borderBottom: "1px solid black",
                         }}
                     >
                         <div
                             style={{
                                 display: "flex",
                                 alignItems: "flex-end",
+                                fontSize: 20,
+                                fontWeight: 700,
                             }}
                         >
                             GOODS RECEIVED NOTE
@@ -306,6 +309,8 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             style={{
                                 display: "flex",
                                 alignItems: "flex-end",
+                                fontSize: 20,
+                                fontWeight: 700,
                             }}
                         >
                             GRN # {createdYear}-{orderNumber}
@@ -319,6 +324,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             gridTemplateColumns: "500px 500px",
                             gridTemplateRows: "30px 30px 30px 30px 30px",
                             marginBottom: 20,
+                            marginTop: 30,
                         }}
                     >
                         <div
@@ -366,7 +372,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                     borderBottom: "1px solid black",
                                 }}
                             >
-                                {receivedDate}
+                                {formattedDate}
                             </div>
                         </div>
                         <div
@@ -566,7 +572,12 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                         className="section section__po-entry-lines"
                         style={{ display: "grid" }}
                     >
-                        <table style={{ borderCollapse: "collapse" }}>
+                        <table
+                            style={{
+                                borderCollapse: "collapse",
+                                marginTop: 30,
+                            }}
+                        >
                             <tbody>
                                 <tr>
                                     <th style={{ border: "3px solid black" }}>
@@ -683,7 +694,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             border: "1px solid black",
                             padding: 10,
                             paddingRight: 100,
-                            marginTop: 10,
+                            marginTop: 30,
                         }}
                     >
                         <div
@@ -777,12 +788,425 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "space-between",
-                            width: "100%",
-                            height: 50,
                             border: "1px solid black",
                             marginTop: 50,
+                            padding: 10,
                         }}
-                    ></footer>
+                    >
+                        <table style={{ borderCollapse: "collapse" }}>
+                            <tbody>
+                                <tr>
+                                    <th>CHARGES:</th>
+                                    <th></th>
+                                    <th style={{ border: "3px solid black" }}>
+                                        Supplier Code
+                                    </th>
+                                    <th style={{ border: "3px solid black" }}>
+                                        Supplier Name
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        Freight
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 340,
+                                            height: 25,
+                                            textAlign: "center",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 240,
+                                                borderBottom:
+                                                    "1px dotted black",
+                                            }}
+                                        >
+                                            &#8364; {freightCharges}
+                                        </div>
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {freightSupplierCode}
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {freightSupplierName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        Insurance
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 340,
+                                            height: 25,
+                                            textAlign: "center",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 240,
+                                                borderBottom:
+                                                    "1px dotted black",
+                                            }}
+                                        >
+                                            &#8364; {insuranceCharges}
+                                        </div>
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {insuranceSupplierCode}
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {insuranceSupplierName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        Handling Charges
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 340,
+                                            height: 25,
+                                            textAlign: "center",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 240,
+                                                borderBottom:
+                                                    "1px dotted black",
+                                            }}
+                                        >
+                                            &#8364; {handlingCharges}
+                                        </div>
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {handlingSupplierCode}
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {handlingSupplierName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        Cartage
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 340,
+                                            height: 25,
+                                            textAlign: "center",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 240,
+                                                borderBottom:
+                                                    "1px dotted black",
+                                            }}
+                                        >
+                                            &#8364; {cartageCharges}
+                                        </div>
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {cartageSupplierCode}
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {cartageSupplierName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        Other Charges
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 340,
+                                            height: 25,
+                                            textAlign: "center",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 240,
+                                                borderBottom:
+                                                    "1px dotted black",
+                                            }}
+                                        >
+                                            &#8364; {otherCharges}
+                                        </div>
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {otherSupplierCode}
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {otherSupplierName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        VAT
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 340,
+                                            height: 25,
+                                            textAlign: "center",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 240,
+                                                borderBottom:
+                                                    "1px dotted black",
+                                            }}
+                                        >
+                                            &#8364; {vatCharges}
+                                        </div>
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {vatSupplierCode}
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {vatSupplierName}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        Deposit
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 340,
+                                            height: 25,
+                                            textAlign: "center",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 240,
+                                                borderBottom:
+                                                    "1px dotted black",
+                                            }}
+                                        >
+                                            &#8364; {depositCharges}
+                                        </div>
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {depositSupplierCode}
+                                    </td>
+                                    <td
+                                        style={{
+                                            width: 200,
+                                            height: 25,
+                                            textAlign: "center",
+                                            border: "1px solid black",
+                                            textAlign: "left",
+                                            paddingLeft: 20,
+                                        }}
+                                    >
+                                        {depositSupplierName}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </footer>
                 </div>
             </div>
 
