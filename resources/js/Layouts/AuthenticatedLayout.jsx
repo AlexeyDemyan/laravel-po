@@ -31,18 +31,6 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
                                 <NavLink
-                                    href={route("chirps.index")}
-                                    active={route().current("chirps.index")}
-                                >
-                                    Chirps
-                                </NavLink>
-                                <NavLink
-                                    href={route("users.index")}
-                                    active={route().current("users.index")}
-                                >
-                                    Users
-                                </NavLink>
-                                <NavLink
                                     href={route("POForm.index")}
                                     active={route().current("POForm.index")}
                                 >
