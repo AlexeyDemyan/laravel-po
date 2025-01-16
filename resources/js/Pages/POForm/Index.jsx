@@ -11,6 +11,15 @@ import { Head, useForm } from "@inertiajs/react";
 
 const maxOrderLinesCount = 10;
 
+const calculateNetTotalValue = (orderLines, discount) => {
+    const sumOfTotalPrices = orderLines.reduce(
+        (accumulator, line) => accumulator + Number(line.totalPrice),
+        0
+    );
+
+    return ((sumOfTotalPrices * (100 - discount)) / 100).toFixed(4);
+};
+
 export default function Index() {
     const [orderLines, setOrderLines] = useState([
         {
@@ -40,6 +49,7 @@ export default function Index() {
     const submit = (e) => {
         e.preventDefault();
 
+        console.log(data);
         post(route("POEntry.store"));
     };
 
@@ -193,7 +203,9 @@ export default function Index() {
                         value={data.discount}
                         type="number"
                         step="0.01"
-                        onChange={(e) => setData("discount", e.target.value)}
+                        onChange={(e) => {
+                            setData("discount", e.target.value);
+                        }}
                     />
                 </FormItemContainer>
 
@@ -203,13 +215,13 @@ export default function Index() {
                         value="Net Total Value"
                     />
                     <TextInput
-                        value={data.netTotalValue}
+                        value={calculateNetTotalValue(
+                            orderLines,
+                            data.discount
+                        )}
                         type="number"
                         step="0.0001"
                         readOnly
-                        onChange={(e) =>
-                            setData("netTotalValue", e.target.value)
-                        }
                     />
                 </FormItemContainer>
 
@@ -230,9 +242,20 @@ export default function Index() {
                     </select>
                 </FormItemContainer>
 
-                <PrimaryButton className="ms-4" disabled={false} onClick={() => {
-                    setData("orderLines", JSON.stringify(data.orderLines));
-                }}>
+                <PrimaryButton
+                    className="ms-4"
+                    disabled={false}
+                    onClick={() => {
+                        setData((prev) => ({
+                            ...prev,
+                            orderLines: JSON.stringify(data.orderLines),
+                            netTotalValue: calculateNetTotalValue(
+                                orderLines,
+                                data.discount
+                            ),
+                        }));
+                    }}
+                >
                     Submit PO
                 </PrimaryButton>
             </form>
