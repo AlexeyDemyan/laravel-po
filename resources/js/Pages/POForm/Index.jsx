@@ -188,9 +188,11 @@ export default function Index() {
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel htmlFor="discount" value="Discount" />
+                    <InputLabel htmlFor="discount" value="Discount %" />
                     <TextInput
                         value={data.discount}
+                        type="number"
+                        step="0.01"
                         onChange={(e) => setData("discount", e.target.value)}
                     />
                 </FormItemContainer>
@@ -202,6 +204,9 @@ export default function Index() {
                     />
                     <TextInput
                         value={data.netTotalValue}
+                        type="number"
+                        step="0.0001"
+                        readOnly
                         onChange={(e) =>
                             setData("netTotalValue", e.target.value)
                         }

@@ -1,8 +1,15 @@
 import TextInput from "./TextInput";
 import SecondaryButton from "./SecondaryButton";
 
-export default function OrderLine({ className = "", line, cb, destroy, deleteDisabled, ...props }) {
-    const { product, quantity, supplierRef, totalPrice, unitPrice } = line;
+export default function OrderLine({
+    className = "",
+    line,
+    cb,
+    destroy,
+    deleteDisabled,
+    ...props
+}) {
+    const { product, quantity, supplierRef, unitPrice } = line;
 
     return (
         <div
@@ -36,22 +43,28 @@ export default function OrderLine({ className = "", line, cb, destroy, deleteDis
             <TextInput
                 className="mr-[5px]"
                 value={quantity}
+                type="number"
+                step=".01"
                 onChange={(e) => {
                     cb("quantity", e.target.value);
+                    cb("totalPrice", (e.target.value * unitPrice).toFixed(4));
                 }}
             />
             <TextInput
                 className="mr-[5px]"
                 value={unitPrice}
+                type="number"
+                step=".0001"
                 onChange={(e) => {
                     cb("unitPrice", e.target.value);
+                    cb("totalPrice", (quantity * e.target.value).toFixed(4));
                 }}
             />
             <TextInput
-                value={totalPrice}
-                onChange={(e) => {
-                    cb("totalPrice", e.target.value);
-                }}
+                value={(quantity * unitPrice).toFixed(4)}
+                type="number"
+                step=".0001"
+                readOnly
             />
         </div>
     );
