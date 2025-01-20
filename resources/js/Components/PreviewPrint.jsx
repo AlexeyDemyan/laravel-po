@@ -26,8 +26,6 @@ export default function PreviewPrint({ entry, onCancel }) {
         priceIncludesVat,
     } = entry;
 
-    const formattedDate = formatDate(date);
-
     const isMarsovinWinery = () => {
         if (company === "Marsovin Winery Ltd") {
             return <div>&#10004;</div>;
@@ -449,7 +447,7 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     borderBottom: "1px solid black",
                                 }}
                             >
-                                {formattedDate}
+                                {formatDate(date)}
                             </div>
                         </div>
                         <div
@@ -552,7 +550,9 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {formatDate(deliveryDate)}
+                            </div>
                         </div>
                         <div
                             className="discount"
@@ -574,7 +574,9 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {discount}
+                            </div>
                         </div>
                         <div
                             className="payment-terms"
@@ -596,7 +598,9 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {paymentTerms}
+                            </div>
                         </div>
                         <div
                             className="net-total-value"
@@ -618,7 +622,9 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {netTotalValue}
+                            </div>
                         </div>
                         <div
                             className="other-remarks"
@@ -640,7 +646,9 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {otherRemarks}
+                            </div>
                         </div>
                         <div
                             className="price-includes-vat"
@@ -662,7 +670,9 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {priceIncludesVat}
+                            </div>
                         </div>
                     </div>
                     <footer
