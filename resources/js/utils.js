@@ -1,7 +1,10 @@
 export const formatDate = (date) => {
-    const dateFromString = new Date(date);
+    if (date) {
+        const dateFromString = new Date(date);
 
-    return `${dateFromString.getDate()}/${
-        dateFromString.getMonth() + 1
-    }/${dateFromString.getFullYear()}`;
+        return `${dateFromString.getDate()}/${dateFromString.getMonth() + 1
+            }/${dateFromString.getFullYear()}`;
+    } else {
+        return null
+    }
 };
