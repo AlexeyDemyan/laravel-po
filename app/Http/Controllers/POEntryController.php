@@ -14,7 +14,7 @@ class POEntryController extends Controller
     public function index(): Response
     {
 
-        $entries = DB::select('select * from p_o_entries');
+        $entries = DB::select('select * from p_o_entries order by orderNumber desc');
 
         return Inertia::render('POList/Index', [
             'entries' => $entries,
