@@ -2,7 +2,7 @@ import { useRef } from "react";
 import SecondaryButton from "./SecondaryButton";
 import FormItemContainer from "./FormItemContainer";
 import { useReactToPrint } from "react-to-print";
-import { formatDate } from "@/utils.js";
+import { formatDate, getOrderNumberWithYear } from "@/utils.js";
 
 const orderLinesCount = 7;
 
@@ -10,8 +10,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
     console.log(entry);
 
     const {
-        created_at,
-        orderNumber,
         company,
         supplier,
         country,
@@ -75,8 +73,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
         }
         return "";
     };
-
-    const createdYear = new Date(created_at).getFullYear();
 
     const parsedOrderLines = JSON.parse(orderLines);
     console.log(parsedOrderLines);
@@ -313,7 +309,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 fontWeight: 700,
                             }}
                         >
-                            GRN # {createdYear}-{orderNumber}
+                            GRN # {getOrderNumberWithYear(entry)}
                         </div>
                     </header>
 

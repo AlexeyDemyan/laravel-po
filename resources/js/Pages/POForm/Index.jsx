@@ -70,8 +70,8 @@ export default function Index() {
                         <option value="Marsovin Winery Ltd">
                             Marsovin Winery Ltd
                         </option>
-                        <option value="CassarCamilleri Marketing, Sales &amp; Distribution Ltd">
-                            CassarCamilleri Marketing, Sales &amp; Distribution
+                        <option value="CassarCamilleri Marketing, Sales & Distribution Ltd">
+                            CassarCamilleri Marketing, Sales & Distribution
                             Ltd
                         </option>
                         <option value="Marsovin Viticulture Ltd">

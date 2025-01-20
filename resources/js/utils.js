@@ -8,3 +8,8 @@ export const formatDate = (date) => {
         return null
     }
 };
+
+export const getOrderNumberWithYear = (entry) => {
+    const createdYear = new Date(entry.created_at).getFullYear();
+    return `${createdYear}-${entry.orderNumber}`
+}

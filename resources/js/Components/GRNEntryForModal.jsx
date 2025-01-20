@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@inertiajs/react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
-import { formatDate } from "@/utils.js";
+import { formatDate, getOrderNumberWithYear } from "@/utils.js";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
@@ -10,7 +10,6 @@ const convertOrderLineToText = (line) => {
 
 export default function GRNEntryForModal({ entry, onClose, onPrint }) {
     const {
-        orderNumber,
         company,
         supplier,
         country,
@@ -25,7 +24,7 @@ export default function GRNEntryForModal({ entry, onClose, onPrint }) {
     } = entry;
 
     const entryToObject = {
-        "Order Number": orderNumber,
+        "Order Number": getOrderNumberWithYear(entry),
         Company: company,
         Supplier: supplier,
         Country: country,
@@ -80,11 +79,7 @@ export default function GRNEntryForModal({ entry, onClose, onPrint }) {
                         console.log("editing");
                     }}
                 >
-                    <Link
-                        href={route("GRNForm.index")}
-                    >
-                        Edit
-                    </Link>
+                    <Link href={route("GRNForm.index")}>Edit</Link>
                 </SecondaryButton>
                 <SecondaryButton
                     onClick={() => {

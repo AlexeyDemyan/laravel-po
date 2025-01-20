@@ -2,7 +2,7 @@ import { useRef } from "react";
 import SecondaryButton from "./SecondaryButton";
 import FormItemContainer from "./FormItemContainer";
 import { useReactToPrint } from "react-to-print";
-import { formatDate } from "@/utils.js";
+import { formatDate, getOrderNumberWithYear } from "@/utils.js";
 
 const orderLinesCount = 13;
 
@@ -10,8 +10,6 @@ export default function PreviewPrint({ entry, onCancel }) {
     console.log(entry);
 
     const {
-        created_at,
-        orderNumber,
         company,
         date,
         supplier,
@@ -46,8 +44,6 @@ export default function PreviewPrint({ entry, onCancel }) {
         }
         return "";
     };
-
-    const createdYear = new Date(created_at).getFullYear();
 
     const parsedOrderLines = JSON.parse(orderLines);
     console.log(parsedOrderLines);
@@ -223,7 +219,7 @@ export default function PreviewPrint({ entry, onCancel }) {
                             marginTop: 20,
                         }}
                     >
-                        Purchase Order # {createdYear}-{orderNumber}
+                        Purchase Order # {getOrderNumberWithYear(entry)}
                     </div>
                     <div
                         className="section section__company-list"
