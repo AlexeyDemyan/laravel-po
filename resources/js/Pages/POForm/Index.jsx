@@ -31,7 +31,7 @@ export default function Index() {
         },
     ]);
 
-    const { data, setData, post } = useForm({
+    const { data, setData, post, reset } = useForm({
         company: "Marsovin Winery Ltd",
         date: "",
         supplier: "",
@@ -50,7 +50,20 @@ export default function Index() {
         e.preventDefault();
 
         console.log(data);
-        post(route("POEntry.store"));
+        post(route("POEntry.store"), {
+            onSuccess: () => {
+                setOrderLines([
+                    {
+                        product: "",
+                        supplierRef: "",
+                        quantity: "",
+                        unitPrice: "",
+                        totalPrice: "",
+                    },
+                ]);
+                reset();
+            },
+        });
     };
 
     return (
@@ -71,8 +84,7 @@ export default function Index() {
                             Marsovin Winery Ltd
                         </option>
                         <option value="CassarCamilleri Marketing, Sales & Distribution Ltd">
-                            CassarCamilleri Marketing, Sales & Distribution
-                            Ltd
+                            CassarCamilleri Marketing, Sales & Distribution Ltd
                         </option>
                         <option value="Marsovin Viticulture Ltd">
                             Marsovin Viticulture Ltd

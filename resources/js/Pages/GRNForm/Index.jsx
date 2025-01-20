@@ -23,7 +23,7 @@ export default function Index() {
         },
     ]);
 
-    const { data, setData, post } = useForm({
+    const { data, setData, post, reset } = useForm({
         company: "Marsovin Winery Ltd",
         supplier: "",
         country: "",
@@ -68,8 +68,22 @@ export default function Index() {
     const submit = (e) => {
         e.preventDefault();
 
-        console.log(data)
-        post(route("GRNEntry.store"));
+        console.log(data);
+        post(route("GRNEntry.store"), {
+            onSuccess: () => {
+                setOrderLines([
+                    {
+                        supplierRef: "",
+                        product: "",
+                        quantityOrdered: "",
+                        quantityReceived: "",
+                        lineValue: "",
+                        dutyLevy: "",
+                    },
+                ]);
+                reset();
+            },
+        });
     };
 
     return (
