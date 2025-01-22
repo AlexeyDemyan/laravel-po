@@ -49,6 +49,8 @@ export default function GRNOrderLine({
             <TextInput
                 className="mr-[5px]"
                 value={quantityOrdered}
+                type="number"
+                step="0.01"
                 onChange={(e) => {
                     cb("quantityOrdered", e.target.value);
                 }}
@@ -56,12 +58,16 @@ export default function GRNOrderLine({
             <TextInput
                 className="mr-[5px]"
                 value={quantityReceived}
+                type="number"
+                step="0.01"
                 onChange={(e) => {
                     cb("quantityReceived", e.target.value);
                 }}
             />
             <TextInput
                 value={lineValue}
+                type="number"
+                step="0.0001"
                 onChange={(e) => {
                     cb("lineValue", e.target.value);
                 }}

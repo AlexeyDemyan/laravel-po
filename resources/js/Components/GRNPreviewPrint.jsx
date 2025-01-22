@@ -15,7 +15,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
         country,
         currency,
         exchangeRate,
-        poreference,
         receivedDate,
         originCountry,
         supplierCode,
@@ -505,30 +504,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                 }}
                             >
                                 {supplierInvoice}
-                            </div>
-                        </div>
-                        <div
-                            className="supplier-order"
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                alignItems: "end",
-                            }}
-                        >
-                            <div
-                                className="supplier-order--title"
-                                style={{ width: 140 }}
-                            >
-                                P/Order Ref
-                            </div>
-                            <div
-                                className="supplier-order--text"
-                                style={{
-                                    width: 300,
-                                    borderBottom: "1px solid black",
-                                }}
-                            >
-                                {poreference}
                             </div>
                         </div>
                         <div
@@ -1143,7 +1118,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                             paddingLeft: 20,
                                         }}
                                     >
-                                        Deposit
+                                        Duty
                                     </td>
                                     <td
                                         style={{

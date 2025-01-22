@@ -11,6 +11,36 @@ import { Head, useForm } from "@inertiajs/react";
 
 const maxOrderLinesCount = 6;
 
+const calculateTotalItems = (orderLines) => {
+    let count = 0;
+
+    orderLines.forEach((line) => {
+        if (line.product) {
+            count++;
+        }
+    });
+
+    return count;
+};
+
+const calculateHashTotalQty = (orderLines) => {
+    let hashTotalQty = orderLines.reduce(
+        (accumulator, line) => accumulator + Number(line.quantityOrdered),
+        0
+    );
+
+    return hashTotalQty.toFixed(2);
+};
+
+const calculateHashLineValue = (orderLines) => {
+    let hashLineValue = orderLines.reduce(
+        (accumulator, line) => accumulator + Number(line.lineValue),
+        0
+    );
+
+    return hashLineValue.toFixed(4);
+};
+
 export default function Index() {
     const [orderLines, setOrderLines] = useState([
         {
@@ -28,7 +58,6 @@ export default function Index() {
         country: "",
         currency: "",
         exchangeRate: "",
-        poreference: "",
         receivedDate: "",
         originCountry: "",
         supplierCode: "",
@@ -141,17 +170,11 @@ export default function Index() {
                     />
                     <TextInput
                         value={data.exchangeRate}
+                        type="number"
+                        step="0.0001"
                         onChange={(e) =>
                             setData("exchangeRate", e.target.value)
                         }
-                    />
-                </FormItemContainer>
-
-                <FormItemContainer>
-                    <InputLabel htmlFor="poreference" value="P/Order Ref" />
-                    <TextInput
-                        value={data.poreference}
-                        onChange={(e) => setData("poreference", e.target.value)}
                     />
                 </FormItemContainer>
 
@@ -263,7 +286,9 @@ export default function Index() {
                 <FormItemContainer>
                     <InputLabel htmlFor="totalItems" value="Total Items" />
                     <TextInput
-                        value={data.totalItems}
+                        value={calculateTotalItems(orderLines)}
+                        type="number"
+                        readOnly
                         onChange={(e) => setData("totalItems", e.target.value)}
                     />
                 </FormItemContainer>
@@ -274,7 +299,10 @@ export default function Index() {
                         value="Hash Total Quantity"
                     />
                     <TextInput
-                        value={data.hashTotalQuantity}
+                        value={calculateHashTotalQty(orderLines)}
+                        type="number"
+                        step="0.01"
+                        readOnly
                         onChange={(e) =>
                             setData("hashTotalQuantity", e.target.value)
                         }
@@ -287,7 +315,10 @@ export default function Index() {
                         value="Hash Line Value"
                     />
                     <TextInput
-                        value={data.hashLineValue}
+                        value={calculateHashLineValue(orderLines)}
+                        type="number"
+                        step="0.0001"
+                        readOnly
                         onChange={(e) =>
                             setData("hashLineValue", e.target.value)
                         }
@@ -348,6 +379,8 @@ export default function Index() {
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.freightCharges}
+                                type="number"
+                                step="0.0001"
                                 onChange={(e) => {
                                     setData("freightCharges", e.target.value);
                                 }}
@@ -378,6 +411,8 @@ export default function Index() {
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.insuranceCharges}
+                                type="number"
+                                step="0.0001"
                                 onChange={(e) => {
                                     setData("insuranceCharges", e.target.value);
                                 }}
@@ -408,6 +443,8 @@ export default function Index() {
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.handlingCharges}
+                                type="number"
+                                step="0.0001"
                                 onChange={(e) => {
                                     setData("handlingCharges", e.target.value);
                                 }}
@@ -438,6 +475,8 @@ export default function Index() {
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.cartageCharges}
+                                type="number"
+                                step="0.0001"
                                 onChange={(e) => {
                                     setData("cartageCharges", e.target.value);
                                 }}
@@ -468,6 +507,8 @@ export default function Index() {
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.otherCharges}
+                                type="number"
+                                step="0.0001"
                                 onChange={(e) => {
                                     setData("otherCharges", e.target.value);
                                 }}
@@ -498,6 +539,8 @@ export default function Index() {
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.vatCharges}
+                                type="number"
+                                step="0.0001"
                                 onChange={(e) => {
                                     setData("vatCharges", e.target.value);
                                 }}
@@ -518,10 +561,12 @@ export default function Index() {
                             />
                         </div>
                         <div className="flex flex-row items-center justify-evenly mb-[10px] min-w-[700px]">
-                            <InputLabel htmlFor="deposit" value="Deposit" />
+                            <InputLabel htmlFor="deposit" value="Duty" />
                             <TextInput
                                 className="mr-[5px]"
                                 value={data.depositCharges}
+                                type="number"
+                                step="0.0001"
                                 onChange={(e) => {
                                     setData("depositCharges", e.target.value);
                                 }}
@@ -554,7 +599,14 @@ export default function Index() {
                     className="ms-4"
                     disabled={false}
                     onClick={() => {
-                        setData("orderLines", JSON.stringify(data.orderLines));
+                        setData((prev) => ({
+                            ...prev,
+                            orderLines: JSON.stringify(data.orderLines),
+                            totalItems: calculateTotalItems(orderLines),
+                            hashTotalQuantity:
+                                calculateHashTotalQty(orderLines),
+                            hashLineValue: calculateHashLineValue(orderLines),
+                        }));
                     }}
                 >
                     Submit GRN
