@@ -29,7 +29,6 @@ class GRNController extends Controller
             'country' => $request->country,
             'currency' => $request->currency,
             'exchangeRate' => $request->exchangeRate,
-            'poreference' => $request->poreference,
             'receivedDate' => $request->receivedDate,
             'originCountry' => $request->originCountry,
             'supplierCode' => $request->supplierCode,

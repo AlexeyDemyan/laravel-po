@@ -35,7 +35,6 @@ export const grnOrderLine = {
     quantityOrdered: "10.55",
     quantityReceived: "8.77",
     lineValue: "5.55",
-    dutyLevy: "1.33",
 }
 
 export const grnAnotherOrderLine = {
@@ -44,7 +43,6 @@ export const grnAnotherOrderLine = {
     quantityOrdered: "18.56",
     quantityReceived: "10",
     lineValue: "4.5",
-    dutyLevy: "2.25",
 }
 
 export const mockGRNFormData = {
@@ -53,16 +51,15 @@ export const mockGRNFormData = {
     country: "Moldova",
     currency: "Yen",
     exchangeRate: "0.55",
-    poreference: "PRF896",
     receivedDate: "2025-09-25",
     originCountry: "Japan",
     supplierCode: "MFRDS888",
     supplierInvoice: "INV4567",
     packingDetails: "No packaging",
     orderLines: [grnOrderLine, grnAnotherOrderLine],
-    totalItems: "18.77",
-    hashTotalQuantity: "15.24",
-    hashLineValue: "69.48",
+    totalItems: "",
+    hashTotalQuantity: "",
+    hashLineValue: "",
     receivingStoreCostCenter: "San Gwann MD",
     remarks: "Some important information",
     goodsReceivedBy: "Jimmy",
