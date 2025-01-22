@@ -8,6 +8,7 @@ import GRNOrderLinesHeader from "@/Components/GRNOrderLinesHeader";
 import GRNOrderLine from "@/Components/GRNOrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm } from "@inertiajs/react";
+import { ToastContainer, toast } from "react-toastify";
 
 const maxOrderLinesCount = 6;
 
@@ -40,6 +41,8 @@ const calculateHashLineValue = (orderLines) => {
 
     return hashLineValue.toFixed(4);
 };
+
+const notify = () => toast.success("GRN Submitted Successfully!");
 
 export default function Index() {
     const [orderLines, setOrderLines] = useState([
@@ -108,6 +111,7 @@ export default function Index() {
                         lineValue: "",
                     },
                 ]);
+                notify()
                 reset();
             },
         });
@@ -611,6 +615,7 @@ export default function Index() {
                 >
                     Submit GRN
                 </PrimaryButton>
+                <ToastContainer position="bottom-left"/>
             </form>
         </AuthenticatedLayout>
     );

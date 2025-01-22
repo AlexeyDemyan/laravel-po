@@ -8,6 +8,7 @@ import OrderLinesHeader from "@/Components/OrderLinesHeader";
 import OrderLine from "@/Components/OrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm } from "@inertiajs/react";
+import { ToastContainer, toast } from "react-toastify";
 
 const maxOrderLinesCount = 10;
 
@@ -19,6 +20,8 @@ const calculateNetTotalValue = (orderLines, discount) => {
 
     return ((sumOfTotalPrices * (100 - discount)) / 100).toFixed(4);
 };
+
+const notify = () => toast.success("PO Submitted Successfully!");
 
 export default function Index() {
     const [orderLines, setOrderLines] = useState([
@@ -61,6 +64,7 @@ export default function Index() {
                         totalPrice: "",
                     },
                 ]);
+                notify();
                 reset();
             },
         });
@@ -270,6 +274,7 @@ export default function Index() {
                 >
                     Submit PO
                 </PrimaryButton>
+                <ToastContainer position="bottom-left" />
             </form>
         </AuthenticatedLayout>
     );
