@@ -82,6 +82,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
             <tr key={index}>
                 <td
                     style={{
+                        minWidth: 200,
                         height: 25,
                         textAlign: "center",
                         border: "1px solid black",
@@ -91,7 +92,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                 </td>
                 <td
                     style={{
-                        minWidth: 450,
+                        minWidth: 400,
                         height: 25,
                         textAlign: "center",
                         border: "1px solid black",
@@ -125,15 +126,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                     }}
                 >
                     {line.lineValue}
-                </td>
-                <td
-                    style={{
-                        height: 25,
-                        textAlign: "center",
-                        border: "1px solid black",
-                    }}
-                >
-                    {line.dutyLevy}
                 </td>
             </tr>
         );
@@ -590,9 +582,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                     </th>
                                     <th style={{ border: "3px solid black" }}>
                                         Line value in EUR
-                                    </th>
-                                    <th style={{ border: "3px solid black" }}>
-                                        Duty/Levy in EUR
                                     </th>
                                 </tr>
                                 {linesWithDuds.map((line) =>

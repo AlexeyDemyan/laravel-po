@@ -15,7 +15,6 @@ export default function GRNOrderLine({
         quantityOrdered,
         quantityReceived,
         lineValue,
-        dutyLevy,
     } = line;
 
     return (
@@ -65,12 +64,6 @@ export default function GRNOrderLine({
                 value={lineValue}
                 onChange={(e) => {
                     cb("lineValue", e.target.value);
-                }}
-            />
-            <TextInput
-                value={dutyLevy}
-                onChange={(e) => {
-                    cb("dutyLevy", e.target.value);
                 }}
             />
         </div>

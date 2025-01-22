@@ -16,7 +16,6 @@ export default function GRNOrderLinesHeader({
             <div className="w-[198px] mr-[5px] text-center">Quantity Ordered</div>
             <div className="w-[198px] mr-[5px] text-center">Quantity Received</div>
             <div className="w-[198px] mr-[5px] text-center">Line Value in EUR</div>
-            <div className="w-[198px] mr-[5px] text-center">Duty/Levy in EUR</div>
         </div>
     );
 }

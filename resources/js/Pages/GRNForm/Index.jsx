@@ -19,7 +19,6 @@ export default function Index() {
             quantityOrdered: "",
             quantityReceived: "",
             lineValue: "",
-            dutyLevy: "",
         },
     ]);
 
@@ -78,7 +77,6 @@ export default function Index() {
                         quantityOrdered: "",
                         quantityReceived: "",
                         lineValue: "",
-                        dutyLevy: "",
                     },
                 ]);
                 reset();
@@ -252,7 +250,6 @@ export default function Index() {
                                         quantityOrdered: "",
                                         quantityReceived: "",
                                         lineValue: "",
-                                        dutyLevy: "",
                                     },
                                 ]);
                                 setData("orderLines", orderLines);
