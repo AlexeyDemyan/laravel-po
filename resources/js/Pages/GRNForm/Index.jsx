@@ -49,6 +49,7 @@ export default function Index() {
         {
             supplierRef: "",
             product: "",
+            unitOfMeasure: "",
             quantityOrdered: "",
             quantityReceived: "",
             lineValue: "",
@@ -106,6 +107,7 @@ export default function Index() {
                     {
                         supplierRef: "",
                         product: "",
+                        unitOfMeasure: "",
                         quantityOrdered: "",
                         quantityReceived: "",
                         lineValue: "",
@@ -274,6 +276,7 @@ export default function Index() {
                                     {
                                         supplierRef: "",
                                         product: "",
+                                        unitOfMeasure: "",
                                         quantityOrdered: "",
                                         quantityReceived: "",
                                         lineValue: "",

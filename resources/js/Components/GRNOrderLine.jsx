@@ -12,6 +12,7 @@ export default function GRNOrderLine({
     const {
         supplierRef,
         product,
+        unitOfMeasure,
         quantityOrdered,
         quantityReceived,
         lineValue,
@@ -47,7 +48,14 @@ export default function GRNOrderLine({
                 }}
             />
             <TextInput
-                className="mr-[5px]"
+                className="mr-[5px] w-[156px]"
+                value={unitOfMeasure}
+                onChange={(e) => {
+                    cb("unitOfMeasure", e.target.value);
+                }}
+            />
+            <TextInput
+                className="mr-[5px] w-[120px]"
                 value={quantityOrdered}
                 type="number"
                 step="0.01"
@@ -56,7 +64,7 @@ export default function GRNOrderLine({
                 }}
             />
             <TextInput
-                className="mr-[5px]"
+                className="mr-[5px] w-[120px]"
                 value={quantityReceived}
                 type="number"
                 step="0.01"

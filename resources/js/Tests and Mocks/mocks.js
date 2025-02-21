@@ -32,6 +32,7 @@ export const mockFormData = {
 export const grnOrderLine = {
     supplierRef: "HNDGL111",
     product: "Hand Gel",
+    unitOfMeasure: "Kilos",
     quantityOrdered: "10.55",
     quantityReceived: "8.77",
     lineValue: "5.55",
@@ -40,6 +41,7 @@ export const grnOrderLine = {
 export const grnAnotherOrderLine = {
     supplierRef: "RMTS589",
     product: "Rubber Mats",
+    unitOfMeasure: "Units",
     quantityOrdered: "18.56",
     quantityReceived: "10",
     lineValue: "4.5",
