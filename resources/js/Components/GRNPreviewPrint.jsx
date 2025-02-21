@@ -81,7 +81,7 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
             <tr key={index}>
                 <td
                     style={{
-                        minWidth: 200,
+                        minWidth: 150,
                         height: 25,
                         textAlign: "center",
                         border: "1px solid black",
@@ -91,13 +91,22 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                 </td>
                 <td
                     style={{
-                        minWidth: 400,
+                        minWidth: 300,
                         height: 25,
                         textAlign: "center",
                         border: "1px solid black",
                     }}
                 >
                     {line.product}
+                </td>
+                <td
+                    style={{
+                        height: 25,
+                        textAlign: "center",
+                        border: "1px solid black",
+                    }}
+                >
+                    {line.unitOfMeasure}
                 </td>
                 <td
                     style={{
@@ -548,6 +557,9 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                     </th>
                                     <th style={{ border: "3px solid black" }}>
                                         Product
+                                    </th>
+                                    <th style={{ border: "3px solid black" }}>
+                                        Unit of Measure
                                     </th>
                                     <th style={{ border: "3px solid black" }}>
                                         QTY Ordered
