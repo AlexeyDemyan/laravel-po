@@ -30,7 +30,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
-                                <NavLink
+                                {/* <NavLink
                                     href={route("POForm.index")}
                                     active={route().current("POForm.index")}
                                 >
@@ -41,7 +41,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     active={route().current("POEntry.index")}
                                 >
                                     PO List
-                                </NavLink>
+                                </NavLink> */}
                                 <NavLink
                                     href={route("GRNForm.index")}
                                     active={route().current("GRNForm.index")}
