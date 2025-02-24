@@ -74,13 +74,13 @@ export default function GRNEntryForModal({ entry, onClose, onPrint }) {
                 </FormItemContainer>
             ))}
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
-                {/* <SecondaryButton
+                <SecondaryButton
                     onClick={() => {
                         console.log("editing");
                     }}
                 >
                     <Link href={route("GRNForm.index")}>Edit</Link>
-                </SecondaryButton> */}
+                </SecondaryButton>
                 <SecondaryButton
                     onClick={() => {
                         onPrint();

@@ -782,8 +782,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
-
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -794,7 +792,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 340,
                                             height: 25,
-                                            textAlign: "center",
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -813,7 +810,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -825,7 +821,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -839,8 +834,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
-
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -851,7 +844,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 340,
                                             height: 25,
-                                            textAlign: "center",
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -870,7 +862,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -882,7 +873,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -896,8 +886,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
-
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -908,7 +896,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 340,
                                             height: 25,
-                                            textAlign: "center",
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -927,7 +914,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -939,7 +925,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -953,8 +938,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
-
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -965,7 +948,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 340,
                                             height: 25,
-                                            textAlign: "center",
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -984,7 +966,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -996,7 +977,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -1010,8 +990,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
-
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -1022,7 +1000,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 340,
                                             height: 25,
-                                            textAlign: "center",
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -1041,7 +1018,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -1053,7 +1029,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -1067,8 +1042,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
-
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -1079,7 +1052,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 340,
                                             height: 25,
-                                            textAlign: "center",
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -1098,7 +1070,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -1110,7 +1081,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -1124,8 +1094,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
-
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -1136,7 +1104,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 340,
                                             height: 25,
-                                            textAlign: "center",
                                             textAlign: "left",
                                             paddingLeft: 20,
                                         }}
@@ -1155,7 +1122,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
@@ -1167,7 +1133,6 @@ export default function GRNPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             width: 200,
                                             height: 25,
-                                            textAlign: "center",
                                             border: "1px solid black",
                                             textAlign: "left",
                                             paddingLeft: 20,
