@@ -1,10 +1,10 @@
 <?php
 
 // $json_string = file_get_contents("../one-order.json");
-$json_string = file_get_contents("../po-entries-backup.json");
+$json_string = file_get_contents("po_entries.json");
 $json_decoded = json_decode($json_string);
 
-$db = new SQLite3('database\database.sqlite');
+$db = new SQLite3('database/database.sqlite');
 
 foreach ($json_decoded as $value) {
     [
