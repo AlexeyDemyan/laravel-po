@@ -619,7 +619,7 @@ export default function PreviewPrint({ entry, onCancel }) {
                                     borderBottom: "1px solid black",
                                 }}
                             >
-                                {netTotalValue}
+                                {(netTotalValue === 0) ? null: netTotalValue}
                             </div>
                         </div>
                         <div
