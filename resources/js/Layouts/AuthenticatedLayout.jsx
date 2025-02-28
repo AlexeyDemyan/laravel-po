@@ -42,14 +42,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     PO List
                                 </NavLink>
-                                {user.id === 1 &&
+                                {(user.id === 1 || user.name === "Admin") &&
                                 <NavLink
                                     href={route("GRNForm.index")}
                                     active={route().current("GRNForm.index")}
                                 >
                                     GRN Form
                                 </NavLink>}
-                                {user.id === 1 && <NavLink
+                                {(user.id === 1 || user.name === "Admin") && <NavLink
                                     href={route("GRNEntry.index")}
                                     active={route().current("GRNEntry.index")}
                                 >
