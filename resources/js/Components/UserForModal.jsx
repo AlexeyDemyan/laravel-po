@@ -2,6 +2,7 @@ import React from "react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
 import DangerButton from "./DangerButton";
+import { Link } from '@inertiajs/react';
 
 export default function UserForModal({ user, onClose }) {
     return (
@@ -19,21 +20,24 @@ export default function UserForModal({ user, onClose }) {
                     <h2 className="text-lg font-medium text-gray-900">
                         ID: {user.id}
                     </h2>
-                    <p
-                        className="mt-1 text-sm text-gray-600 mr-6"
-                    >
+                    <p className="mt-1 text-sm text-gray-600 mr-6">
                         {user.name}
                     </p>
-                    <p
-                        className="mt-1 text-sm text-gray-600 mr-6"
-                    >
+                    <p className="mt-1 text-sm text-gray-600 mr-6">
                         {user.email}
                     </p>
                 </div>
             </FormItemContainer>
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
                 <SecondaryButton>Reset email</SecondaryButton>
-                <DangerButton>Delete User</DangerButton>
+                <DangerButton
+                    onClick={() => {
+                        route("users.destroy", user);
+                    }}
+                >
+                    Delete User
+                </DangerButton>
+                <Link as="button" href={route('users.destroy', user.id)} method="delete">Linkin</Link>
             </FormItemContainer>
         </div>
     );
