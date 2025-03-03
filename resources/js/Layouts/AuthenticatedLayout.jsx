@@ -174,18 +174,42 @@ export default function AuthenticatedLayout({ header, children }) {
                         >
                             Dashboard
                         </ResponsiveNavLink>
+                        {user.name === "Admin" && (
+                            <ResponsiveNavLink
+                                href={route("users.index")}
+                                active={route().current("users.index")}
+                            >
+                                Users
+                            </ResponsiveNavLink>
+                        )}
                         <ResponsiveNavLink
-                            href={route("chirps.index")}
-                            active={route().current("chirps.index")}
+                            href={route("POForm.index")}
+                            active={route().current("POForm.index")}
                         >
-                            Chirps
+                            PO Form
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            href={route("users.index")}
-                            active={route().current("users.index")}
+                            href={route("POEntry.index")}
+                            active={route().current("POEntry.index")}
                         >
-                            Chirps
+                            PO List
                         </ResponsiveNavLink>
+                        {(user.id === 1 || user.name === "Admin") && (
+                            <ResponsiveNavLink
+                                href={route("GRNForm.index")}
+                                active={route().current("GRNForm.index")}
+                            >
+                                GRN Form
+                            </ResponsiveNavLink>
+                        )}
+                        {(user.id === 1 || user.name === "Admin") && (
+                            <ResponsiveNavLink
+                                href={route("GRNEntry.index")}
+                                active={route().current("GRNEntry.index")}
+                            >
+                                GRN List
+                            </ResponsiveNavLink>
+                        )}
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4">
