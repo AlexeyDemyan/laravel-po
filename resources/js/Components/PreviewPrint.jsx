@@ -140,6 +140,7 @@ export default function PreviewPrint({ entry, onCancel }) {
                         display: "flex",
                         flexDirection: "column",
                         size: "7in 9.25in",
+                        marginTop: "20px",
                     }}
                 >
                     <header
