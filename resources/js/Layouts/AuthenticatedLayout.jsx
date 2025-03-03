@@ -30,6 +30,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+                                {user.name === "Admin" && (
+                                    <NavLink
+                                        href={route("users.index")}
+                                        active={route().current("users.index")}
+                                    >
+                                        Users
+                                    </NavLink>
+                                )}
                                 <NavLink
                                     href={route("POForm.index")}
                                     active={route().current("POForm.index")}
@@ -42,19 +50,26 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     PO List
                                 </NavLink>
-                                {(user.id === 1 || user.name === "Admin") &&
-                                <NavLink
-                                    href={route("GRNForm.index")}
-                                    active={route().current("GRNForm.index")}
-                                >
-                                    GRN Form
-                                </NavLink>}
-                                {(user.id === 1 || user.name === "Admin") && <NavLink
-                                    href={route("GRNEntry.index")}
-                                    active={route().current("GRNEntry.index")}
-                                >
-                                    GRN List
-                                </NavLink>}
+                                {(user.id === 1 || user.name === "Admin") && (
+                                    <NavLink
+                                        href={route("GRNForm.index")}
+                                        active={route().current(
+                                            "GRNForm.index"
+                                        )}
+                                    >
+                                        GRN Form
+                                    </NavLink>
+                                )}
+                                {(user.id === 1 || user.name === "Admin") && (
+                                    <NavLink
+                                        href={route("GRNEntry.index")}
+                                        active={route().current(
+                                            "GRNEntry.index"
+                                        )}
+                                    >
+                                        GRN List
+                                    </NavLink>
+                                )}
                             </div>
                         </div>
 
