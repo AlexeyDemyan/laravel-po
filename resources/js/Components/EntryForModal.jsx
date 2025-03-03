@@ -3,8 +3,8 @@ import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
 import { formatDate, getOrderNumberWithYear } from "@/utils.js";
 import { usePage } from "@inertiajs/react";
-import DangerButton from "./DangerButton";
 import { Link } from "@inertiajs/react";
+import { dangerButtonClassName } from "@/tailwind-helper";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
@@ -86,15 +86,14 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                     </SecondaryButton>
                 )} */}
                 {currentUser.name === "Admin" && (
-                    <DangerButton>
-                        <Link
-                            as="button"
-                            href={route("POEntry.destroy", entry.orderNumber)}
-                            method="delete"
-                        >
-                            DELETE ENTRY
-                        </Link>
-                    </DangerButton>
+                    <Link
+                        as="button"
+                        href={route("POEntry.destroy", entry.orderNumber)}
+                        method="delete"
+                        className={dangerButtonClassName}
+                    >
+                        DELETE ENTRY
+                    </Link>
                 )}
                 <SecondaryButton
                     onClick={() => {

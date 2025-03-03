@@ -1,8 +1,8 @@
 import React from "react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
-import DangerButton from "./DangerButton";
 import { Link } from "@inertiajs/react";
+import { dangerButtonClassName } from "@/tailwind-helper";
 
 export default function UserForModal({ user, onClose }) {
     return (
@@ -30,15 +30,14 @@ export default function UserForModal({ user, onClose }) {
             </FormItemContainer>
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
                 <SecondaryButton>Reset email</SecondaryButton>
-                <DangerButton>
-                    <Link
-                        as="button"
-                        href={route("users.destroy", user.id)}
-                        method="delete"
-                    >
-                        DELETE USER
-                    </Link>
-                </DangerButton>
+                <Link
+                    as="button"
+                    href={route("users.destroy", user.id)}
+                    method="delete"
+                    className={dangerButtonClassName}
+                >
+                    DELETE USER
+                </Link>
             </FormItemContainer>
         </div>
     );
