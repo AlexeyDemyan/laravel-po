@@ -49,4 +49,11 @@ class POEntryController extends Controller
 
         return redirect(route('POForm.index'));
     }
+
+    public function destroy($number): RedirectResponse
+    {
+        DB::table('p_o_entries')->where('orderNumber', $number)->delete();
+
+        return redirect(route('POEntry.index'));
+    }
 }

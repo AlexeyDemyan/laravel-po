@@ -1,14 +1,18 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
 import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
 import { formatDate, getOrderNumberWithYear } from "@/utils.js";
+import { usePage } from "@inertiajs/react";
+import DangerButton from "./DangerButton";
+import { Link } from "@inertiajs/react";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
 };
 
 export default function EntryForModal({ entry, onClose, onPrint }) {
+    const currentUser = usePage().props.auth.user;
+
     const {
         company,
         date,
@@ -76,17 +80,22 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                 </FormItemContainer>
             ))}
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
-                {/* <SecondaryButton
-                    onClick={() => {
-                        console.log("editing");
-                    }}
-                >
-                    <Link
-                        href={route("POForm.index")}
-                    >
-                        Edit
-                    </Link>
-                </SecondaryButton> */}
+                {/* {currentUser.name === "Admin" && (
+                    <SecondaryButton>
+                        <Link href={route("POForm.index")}>Edit</Link>
+                    </SecondaryButton>
+                )} */}
+                {currentUser.name === "Admin" && (
+                    <DangerButton>
+                        <Link
+                            as="button"
+                            href={route("POEntry.destroy", entry.orderNumber)}
+                            method="delete"
+                        >
+                            DELETE ENTRY
+                        </Link>
+                    </DangerButton>
+                )}
                 <SecondaryButton
                     onClick={() => {
                         onPrint();
