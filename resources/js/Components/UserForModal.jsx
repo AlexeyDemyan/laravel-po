@@ -35,6 +35,7 @@ export default function UserForModal({ user, onClose }) {
                     href={route("users.destroy", user.id)}
                     method="delete"
                     className={dangerButtonClassName}
+                    onClick={onClose}
                 >
                     DELETE USER
                 </Link>

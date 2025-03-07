@@ -91,6 +91,7 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                         href={route("POEntry.destroy", entry.orderNumber)}
                         method="delete"
                         className={dangerButtonClassName}
+                        onClick={onClose}
                     >
                         DELETE ENTRY
                     </Link>

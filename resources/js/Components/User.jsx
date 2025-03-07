@@ -6,14 +6,7 @@ export default function User({ user, editClickHanlder }) {
     const currentUser = usePage().props.auth.user;
 
     return (
-        <div className="p-6 flex space-x-2">
-            {currentUser.name === "Admin" && (
-                <SecondaryButton
-                    onClick={editClickHanlder}
-                >
-                    Edit
-                </SecondaryButton>
-            )}
+        <div className="p-6 flex space-x-2 hover:cursor-pointer hover:ring-2 hover:ring-indigo-500 hover:rounded-md hover:ring-offset-2" onClick={currentUser.name === "Admin" && editClickHanlder}>
             <div className="flex-1">
                 <div className="flex justify-between items-center">
                     <div>
