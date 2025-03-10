@@ -1,5 +1,4 @@
 import React from "react";
-import SecondaryButton from "./SecondaryButton";
 import { usePage } from "@inertiajs/react";
 
 export default function User({ user, editClickHanlder }) {

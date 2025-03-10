@@ -18,6 +18,7 @@ class POEntry extends Model
         'otherRemarks',
         'discount',
         'netTotalValue',
-        'priceIncludesVat'
+        'priceIncludesVat',
+        'userId'
     ];
 }

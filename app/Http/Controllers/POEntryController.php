@@ -45,6 +45,7 @@ class POEntryController extends Controller
             'discount' => $request->discount,
             'netTotalValue' => $request->netTotalValue,
             'priceIncludesVat' => $request->priceIncludesVat,
+            'userId' => $request->userId
         ]);
 
         return redirect(route('POForm.index'));

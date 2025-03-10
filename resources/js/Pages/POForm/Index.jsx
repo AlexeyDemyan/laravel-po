@@ -7,7 +7,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import OrderLinesHeader from "@/Components/OrderLinesHeader";
 import OrderLine from "@/Components/OrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
-import { Head, useForm } from "@inertiajs/react";
+import { Head, useForm, usePage } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
 
 const maxOrderLinesCount = 10;
@@ -24,6 +24,8 @@ const calculateNetTotalValue = (orderLines, discount) => {
 const notify = () => toast.success("PO Submitted Successfully!");
 
 export default function Index() {
+    const currentUser = usePage().props.auth.user;
+
     const [orderLines, setOrderLines] = useState([
         {
             product: "",
@@ -47,6 +49,7 @@ export default function Index() {
         discount: "",
         netTotalValue: "",
         priceIncludesVat: "Yes",
+        userId: currentUser.id,
     });
 
     const submit = (e) => {
