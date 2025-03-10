@@ -3,11 +3,22 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Entry from "@/Components/Entry";
 import Modal from "@/Components/Modal";
 import EntryForModal from "@/Components/EntryForModal";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import PreviewPrint from "@/Components/PreviewPrint";
 
 export default function Index({ entries }) {
     console.log(entries);
+    const currentUser = usePage().props.auth.user;
+
+    let entriesFiltered;
+
+    if (currentUser.name === "Admin") {
+        entriesFiltered = entries;
+    } else {
+        entriesFiltered = entries.filter(
+            (entry) => entry.userId === currentUser.id
+        );
+    }
 
     const [currentEntry, setCurrentEntry] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,7 +41,7 @@ export default function Index({ entries }) {
                     <Modal show={isModalVisible}>
                         {isPrintVisible ? (
                             <EntryForModal
-                                entry={entries.find(
+                                entry={entriesFiltered.find(
                                     (elt) => elt.orderNumber === currentEntry
                                 )}
                                 onClose={() => {
@@ -43,7 +54,7 @@ export default function Index({ entries }) {
                             />
                         ) : (
                             <PreviewPrint
-                                entry={entries.find(
+                                entry={entriesFiltered.find(
                                     (elt) => elt.orderNumber === currentEntry
                                 )}
                                 onCancel={() => {
@@ -52,7 +63,7 @@ export default function Index({ entries }) {
                             />
                         )}
                     </Modal>
-                    {entries.map((entry) => (
+                    {entriesFiltered.map((entry) => (
                         <Entry
                             key={entry.orderNumber}
                             entry={entry}

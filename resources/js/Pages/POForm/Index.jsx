@@ -37,7 +37,7 @@ export default function Index() {
     ]);
 
     const { data, setData, post, reset } = useForm({
-        company: "Marsovin Winery Ltd",
+        company: currentUser.id === 4 && "Marsovin Viticulture Ltd",
         date: "",
         supplier: "",
         supplierAddress: "",
