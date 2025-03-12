@@ -4,7 +4,7 @@ export const counterSlice = createSlice({
     name: 'entry',
     initialState: {
         editing: false,
-        company: "Marsovin Viticulture Ltd",
+        company: "Marsovin Winery Ltd",
         date: "",
         supplier: "",
         orderNumber: null,
@@ -22,10 +22,11 @@ export const counterSlice = createSlice({
         ],
         paymentTerms: "",
         otherRemarks: "",
-        discount: 5,
+        discount: "",
         netTotalValue: "",
         priceIncludesVat: "Yes",
         userId: null,
+        created_at: null,
     },
     reducers: {
         incrementDiscount: (state) => {state.orderNumber++},
@@ -47,6 +48,7 @@ export const counterSlice = createSlice({
             state.netTotalValue = action.payload.netTotalValue;
             state.priceIncludesVat = action.payload.priceIncludesVat;
             state.userId = action.payload.userId;
+            state.created_at = action.payload.created_at;
         }
     }
 });

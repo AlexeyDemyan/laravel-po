@@ -10,6 +10,7 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm, usePage } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import { getOrderNumberWithYear } from "@/utils";
 
 const maxOrderLinesCount = 10;
 
@@ -30,40 +31,23 @@ export default function Index() {
 
     const currentUser = usePage().props.auth.user;
 
-    // const [orderLines, setOrderLines] = useState([
-    //     {
-    //         product: "",
-    //         supplierRef: "",
-    //         quantity: "",
-    //         unitPrice: "",
-    //         totalPrice: "",
-    //     },
-    // ]);
+    const orderLinesFromState = Array.isArray(entryFromState.orderLines)
+        ? entryFromState.orderLines
+        : JSON.parse(entryFromState.orderLines);
 
-    const [orderLines, setOrderLines] = useState([
-        {
-            product: "",
-            supplierRef: "",
-            quantity: "",
-            unitPrice: "",
-            totalPrice: "",
-        },
-    ]);
+    const [orderLines, setOrderLines] = useState(orderLinesFromState);
 
-    const formItemSanitizer = (formItem, result) => {
-        return entryFromState.editing && entryFromState[formItem]
-            ? entryFromState[formItem]
-            : result;
-    };
-
-    const companyChooser = () => {
-        return currentUser.id === 4
-            ? "Marsovin Viticulture Ltd"
-            : "Marsovin Winery Ltd";
+    const formItemSanitizer = (formItem, defaultValue) => {
+        if (formItem === "company") {
+            if (!entryFromState.editing && currentUser.id === 4) {
+                return "Marsovin Viticulture Ltd";
+            }
+        }
+        return entryFromState[formItem] || defaultValue;
     };
 
     const { data, setData, post, reset } = useForm({
-        company: formItemSanitizer("company", companyChooser()),
+        company: formItemSanitizer("company", "Marsovin Winery Ltd"),
         date: formItemSanitizer("date", ""),
         supplier: formItemSanitizer("supplier", ""),
         supplierAddress: formItemSanitizer("supplierAddress", ""),
@@ -104,8 +88,19 @@ export default function Index() {
             <Head title="POForm" />
             <form
                 onSubmit={submit}
-                className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8"
+                className={
+                    "max-w-7xl mx-auto p-4 sm:p-6 lg:p-8" +
+                    (entryFromState.editing && " bg-red-300")
+                }
             >
+                {entryFromState.editing && (
+                    <FormItemContainer>
+                        <h1 className="text-3xl">
+                            EDITING Order Number: {" "}
+                            {getOrderNumberWithYear(entryFromState)}
+                        </h1>
+                    </FormItemContainer>
+                )}
                 <FormItemContainer>
                     <InputLabel htmlFor="company" value="Company" />
                     <select
