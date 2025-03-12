@@ -3,7 +3,10 @@ import FormItemContainer from "./FormItemContainer";
 import SecondaryButton from "./SecondaryButton";
 import { formatDate, getOrderNumberWithYear } from "@/utils.js";
 import { usePage, Link } from "@inertiajs/react";
-import { dangerButtonClassName } from "@/tailwind-helper";
+import {
+    dangerButtonClassName,
+    secondaryButtonClassName,
+} from "@/tailwind-helper";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEntry } from "@/store/counterSlice";
 
@@ -84,14 +87,17 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                 </FormItemContainer>
             ))}
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
-                <SecondaryButton
+                <Link
+                    as="button"
+                    href={route("POForm.index")}
+                    className={secondaryButtonClassName}
                     onClick={() => {
                         dispatch(updateEntry(entry));
                         console.log(entryFromState);
                     }}
                 >
-                    <Link href={route("POForm.index")}>Edit</Link>
-                </SecondaryButton>
+                    Edit
+                </Link>
                 {currentUser.name === "Admin" && (
                     <Link
                         as="button"

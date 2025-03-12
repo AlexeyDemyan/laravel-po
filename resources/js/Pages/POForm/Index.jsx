@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrderNumberWithYear } from "@/utils";
 import { resetEntry } from "@/store/counterSlice";
+import { secondaryButtonClassName } from "@/tailwind-helper";
 
 const maxOrderLinesCount = 10;
 
@@ -101,14 +102,16 @@ export default function Index() {
                             EDITING Order Number:{" "}
                             {getOrderNumberWithYear(entryFromState)}
                         </h1>
-                        <SecondaryButton
-                            className="ml-[10px]"
+                        <Link
+                            as="button"
+                            href={route("POForm.index")}
+                            className={secondaryButtonClassName + " ml-[10px]"}
                             onClick={() => {
                                 dispatch(resetEntry());
                             }}
                         >
-                            <Link href={route("POForm.index")}>Cancel Edit</Link>
-                        </SecondaryButton>
+                            Cancel Edit
+                        </Link>
                     </FormItemContainer>
                 )}
                 <FormItemContainer>
