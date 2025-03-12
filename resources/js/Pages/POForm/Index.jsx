@@ -9,8 +9,10 @@ import OrderLine from "@/Components/OrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm, usePage } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getOrderNumberWithYear } from "@/utils";
+import { defaultPOEntryState } from "@/default-po-entry-state";
+import { resetEntry } from "@/store/counterSlice";
 
 const maxOrderLinesCount = 10;
 
@@ -26,6 +28,7 @@ const calculateNetTotalValue = (orderLines, discount) => {
 const notify = () => toast.success("PO Submitted Successfully!");
 
 export default function Index() {
+    const dispatch = useDispatch();
     const entryFromState = useSelector((state) => state.entry);
     console.log(entryFromState);
 
@@ -96,9 +99,18 @@ export default function Index() {
                 {entryFromState.editing && (
                     <FormItemContainer>
                         <h1 className="text-3xl">
-                            EDITING Order Number: {" "}
+                            EDITING Order Number:{" "}
                             {getOrderNumberWithYear(entryFromState)}
                         </h1>
+                        <SecondaryButton
+                            className="ml-[10px]"
+                            onClick={() => {
+                                console.log("here");
+                                dispatch(resetEntry());
+                            }}
+                        >
+                            CANCEL EDIT
+                        </SecondaryButton>
                     </FormItemContainer>
                 )}
                 <FormItemContainer>

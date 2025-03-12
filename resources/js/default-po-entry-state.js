@@ -1,0 +1,26 @@
+export const defaultPOEntryState = {
+    editing: false,
+    company: "Marsovin Winery Ltd",
+    date: "",
+    supplier: "",
+    orderNumber: null,
+    supplierAddress: "",
+    supplierCode: "",
+    deliveryDate: "",
+    orderLines: [
+        {
+            product: "",
+            supplierRef: "",
+            quantity: "",
+            unitPrice: "",
+            totalPrice: "",
+        },
+    ],
+    paymentTerms: "",
+    otherRemarks: "",
+    discount: "",
+    netTotalValue: "",
+    priceIncludesVat: "Yes",
+    userId: null,
+    created_at: null,
+}
