@@ -12,7 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrderNumberWithYear } from "@/utils";
 import { resetEntry } from "@/store/counterSlice";
-import { secondaryButtonClassName } from "@/tailwind-helper";
+import { dangerButtonClassName } from "@/tailwind-helper";
 
 const maxOrderLinesCount = 10;
 
@@ -69,21 +69,26 @@ export default function Index() {
         e.preventDefault();
 
         console.log(data);
-        post(route("POEntry.store"), {
-            onSuccess: () => {
-                setOrderLines([
-                    {
-                        product: "",
-                        supplierRef: "",
-                        quantity: "",
-                        unitPrice: "",
-                        totalPrice: "",
-                    },
-                ]);
-                notify();
-                reset();
-            },
-        });
+
+        if (entryFromState.editing) {
+            console.log("editing here");
+        } else {
+            post(route("POEntry.store"), {
+                onSuccess: () => {
+                    setOrderLines([
+                        {
+                            product: "",
+                            supplierRef: "",
+                            quantity: "",
+                            unitPrice: "",
+                            totalPrice: "",
+                        },
+                    ]);
+                    notify();
+                    reset();
+                },
+            });
+        }
     };
 
     return (
@@ -105,7 +110,7 @@ export default function Index() {
                         <Link
                             as="button"
                             href={route("POForm.index")}
-                            className={secondaryButtonClassName + " ml-[10px]"}
+                            className={dangerButtonClassName + " ml-[10px]"}
                             onClick={() => {
                                 dispatch(resetEntry());
                             }}
