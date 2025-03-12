@@ -30,6 +30,16 @@ export default function Index() {
 
     const currentUser = usePage().props.auth.user;
 
+    // const [orderLines, setOrderLines] = useState([
+    //     {
+    //         product: "",
+    //         supplierRef: "",
+    //         quantity: "",
+    //         unitPrice: "",
+    //         totalPrice: "",
+    //     },
+    // ]);
+
     const [orderLines, setOrderLines] = useState([
         {
             product: "",
@@ -46,8 +56,14 @@ export default function Index() {
             : result;
     };
 
+    const companyChooser = () => {
+        return currentUser.id === 4
+            ? "Marsovin Viticulture Ltd"
+            : "Marsovin Winery Ltd";
+    };
+
     const { data, setData, post, reset } = useForm({
-        company: currentUser.id === 4 && "Marsovin Viticulture Ltd",
+        company: formItemSanitizer("company", companyChooser()),
         date: formItemSanitizer("date", ""),
         supplier: formItemSanitizer("supplier", ""),
         supplierAddress: formItemSanitizer("supplierAddress", ""),
