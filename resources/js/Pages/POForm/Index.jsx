@@ -40,39 +40,25 @@ export default function Index() {
         },
     ]);
 
-    const formItemSanitizer = (formItem) => {
-        // if (entryFromState.editing && entryFromState[formItem]) {
-        //     return entryFromState[formItem];
-        // } else {
-        //     return "";
-        // }
-
+    const formItemSanitizer = (formItem, result) => {
         return entryFromState.editing && entryFromState[formItem]
             ? entryFromState[formItem]
-            : "";
+            : result;
     };
-
-    // const formItemSanitizerRefactored = (formItem) => {
-    //     if (entryFromState.editing && entryFromState[formItem]) {
-    //         return entryFromState[formItem];
-    //     } else {
-    //         return "";
-    //     }
-    // };
 
     const { data, setData, post, reset } = useForm({
         company: currentUser.id === 4 && "Marsovin Viticulture Ltd",
-        date: formItemSanitizer("date"),
-        supplier: "",
-        supplierAddress: "",
-        supplierCode: "",
-        deliveryDate: "",
+        date: formItemSanitizer("date", ""),
+        supplier: formItemSanitizer("supplier", ""),
+        supplierAddress: formItemSanitizer("supplierAddress", ""),
+        supplierCode: formItemSanitizer("supplierCode", ""),
+        deliveryDate: formItemSanitizer("deliveryDate", ""),
         orderLines: orderLines,
-        paymentTerms: "",
-        otherRemarks: "",
-        discount: formItemSanitizer("discount"),
-        netTotalValue: "",
-        priceIncludesVat: "Yes",
+        paymentTerms: formItemSanitizer("paymentTerms", ""),
+        otherRemarks: formItemSanitizer("otherRemarks", ""),
+        discount: formItemSanitizer("discount", ""),
+        netTotalValue: formItemSanitizer("netTotalValue", ""),
+        priceIncludesVat: formItemSanitizer("priceIncludesVat", "Yes"),
         userId: currentUser.id,
     });
 
