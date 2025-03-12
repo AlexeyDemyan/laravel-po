@@ -9,6 +9,7 @@ import OrderLine from "@/Components/OrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm, usePage } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const maxOrderLinesCount = 10;
 
@@ -24,6 +25,9 @@ const calculateNetTotalValue = (orderLines, discount) => {
 const notify = () => toast.success("PO Submitted Successfully!");
 
 export default function Index() {
+    const entryFromState = useSelector((state) => state.entry);
+    console.log(entryFromState);
+
     const currentUser = usePage().props.auth.user;
 
     const [orderLines, setOrderLines] = useState([
@@ -36,9 +40,29 @@ export default function Index() {
         },
     ]);
 
+    const formItemSanitizer = (formItem) => {
+        // if (entryFromState.editing && entryFromState[formItem]) {
+        //     return entryFromState[formItem];
+        // } else {
+        //     return "";
+        // }
+
+        return entryFromState.editing && entryFromState[formItem]
+            ? entryFromState[formItem]
+            : "";
+    };
+
+    // const formItemSanitizerRefactored = (formItem) => {
+    //     if (entryFromState.editing && entryFromState[formItem]) {
+    //         return entryFromState[formItem];
+    //     } else {
+    //         return "";
+    //     }
+    // };
+
     const { data, setData, post, reset } = useForm({
         company: currentUser.id === 4 && "Marsovin Viticulture Ltd",
-        date: "",
+        date: formItemSanitizer("date"),
         supplier: "",
         supplierAddress: "",
         supplierCode: "",
@@ -46,7 +70,7 @@ export default function Index() {
         orderLines: orderLines,
         paymentTerms: "",
         otherRemarks: "",
-        discount: "",
+        discount: formItemSanitizer("discount"),
         netTotalValue: "",
         priceIncludesVat: "Yes",
         userId: currentUser.id,

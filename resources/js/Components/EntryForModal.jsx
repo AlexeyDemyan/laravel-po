@@ -5,12 +5,17 @@ import { formatDate, getOrderNumberWithYear } from "@/utils.js";
 import { usePage } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 import { dangerButtonClassName } from "@/tailwind-helper";
+import { useDispatch, useSelector } from "react-redux";
+import { updateEntry } from "@/store/counterSlice";
 
 const convertOrderLineToText = (line) => {
     return `${line.product}(${line.supplierRef}) by ${line.quantity} at ${line.unitPrice} EUR = ${line.totalPrice} EUR \n `;
 };
 
 export default function EntryForModal({ entry, onClose, onPrint }) {
+    const entryFromState = useSelector((state) => state.entry);
+    const dispatch = useDispatch();
+
     const currentUser = usePage().props.auth.user;
 
     const {
@@ -80,11 +85,14 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                 </FormItemContainer>
             ))}
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
-                {/* {currentUser.name === "Admin" && (
-                    <SecondaryButton>
-                        <Link href={route("POForm.index")}>Edit</Link>
-                    </SecondaryButton>
-                )} */}
+                <SecondaryButton
+                    onClick={() => {
+                        dispatch(updateEntry(entry));
+                        console.log(entryFromState);
+                    }}
+                >
+                    <Link href={route("POForm.index")}>Edit</Link>
+                </SecondaryButton>
                 {currentUser.name === "Admin" && (
                     <Link
                         as="button"
