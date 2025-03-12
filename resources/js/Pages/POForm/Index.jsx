@@ -7,11 +7,10 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import OrderLinesHeader from "@/Components/OrderLinesHeader";
 import OrderLine from "@/Components/OrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
-import { Head, useForm, usePage } from "@inertiajs/react";
+import { Head, useForm, usePage, Link } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrderNumberWithYear } from "@/utils";
-import { defaultPOEntryState } from "@/default-po-entry-state";
 import { resetEntry } from "@/store/counterSlice";
 
 const maxOrderLinesCount = 10;
@@ -105,11 +104,10 @@ export default function Index() {
                         <SecondaryButton
                             className="ml-[10px]"
                             onClick={() => {
-                                console.log("here");
                                 dispatch(resetEntry());
                             }}
                         >
-                            CANCEL EDIT
+                            <Link href={route("POForm.index")}>Cancel Edit</Link>
                         </SecondaryButton>
                     </FormItemContainer>
                 )}
