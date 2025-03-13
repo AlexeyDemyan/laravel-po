@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrderNumberWithYear } from "@/utils";
 import { resetEntry } from "@/store/counterSlice";
+import { setRecentEntry } from "@/store/recentEntrySlice";
 import { dangerButtonClassName } from "@/tailwind-helper";
 
 const maxOrderLinesCount = 10;
@@ -30,7 +31,6 @@ const notify = () => toast.success("PO Submitted Successfully!");
 export default function Index() {
     const dispatch = useDispatch();
     const entryFromState = useSelector((state) => state.entry);
-    console.log(entryFromState);
 
     const currentUser = usePage().props.auth.user;
 
@@ -91,6 +91,7 @@ export default function Index() {
                         },
                     ]);
                     dispatch(resetEntry());
+                    dispatch(setRecentEntry(entryFromState.orderNumber))
                 },
             });
         } else {

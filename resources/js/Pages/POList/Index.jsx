@@ -5,10 +5,12 @@ import Modal from "@/Components/Modal";
 import EntryForModal from "@/Components/EntryForModal";
 import { Head, usePage } from "@inertiajs/react";
 import PreviewPrint from "@/Components/PreviewPrint";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Index({ entries }) {
-    console.log(entries);
     const currentUser = usePage().props.auth.user;
+    const recentEntry = useSelector((state) => state.recentEntry.value);
+    console.log(recentEntry);
 
     let entriesFiltered;
 
@@ -65,6 +67,7 @@ export default function Index({ entries }) {
                     </Modal>
                     {entriesFiltered.map((entry) => (
                         <Entry
+                            className={recentEntry === entry.orderNumber && " bg-red-300"}
                             key={entry.orderNumber}
                             entry={entry}
                             onClick={() => {

@@ -93,7 +93,6 @@ export default function EntryForModal({ entry, onClose, onPrint }) {
                     className={secondaryButtonClassName}
                     onClick={() => {
                         dispatch(updateEntry(entry));
-                        console.log(entryFromState);
                     }}
                 >
                     Edit

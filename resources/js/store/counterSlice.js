@@ -7,7 +7,6 @@ export const counterSlice = createSlice({
     reducers: {
         incrementDiscount: (state) => { state.orderNumber++ },
         updateEntry: (state, action) => {
-            console.log(action.payload);
             state.editing = true;
             state.company = action.payload.company;
             state.date = action.payload.date;
