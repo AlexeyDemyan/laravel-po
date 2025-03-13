@@ -34,9 +34,17 @@ export default function Index() {
 
     const currentUser = usePage().props.auth.user;
 
-    const orderLinesFromState = Array.isArray(entryFromState.orderLines)
-        ? entryFromState.orderLines
-        : JSON.parse(entryFromState.orderLines);
+    const orderLinesFromState = entryFromState.editing
+        ? JSON.parse(entryFromState.orderLines)
+        : [
+              {
+                  product: "",
+                  supplierRef: "",
+                  quantity: "",
+                  unitPrice: "",
+                  totalPrice: "",
+              },
+          ];
 
     const [orderLines, setOrderLines] = useState(orderLinesFromState);
 
@@ -49,7 +57,7 @@ export default function Index() {
         return entryFromState[formItem] || defaultValue;
     };
 
-    const { data, setData, post, reset } = useForm({
+    const { data, setData, post, reset, put } = useForm({
         company: formItemSanitizer("company", "Marsovin Winery Ltd"),
         date: formItemSanitizer("date", ""),
         supplier: formItemSanitizer("supplier", ""),
@@ -71,7 +79,22 @@ export default function Index() {
         console.log(data);
 
         if (entryFromState.editing) {
-            console.log("editing here");
+            put(route("POEntry.update", entryFromState.orderNumber), {
+                onSuccess: () => {
+                    setOrderLines([
+                        {
+                            product: "",
+                            supplierRef: "",
+                            quantity: "",
+                            unitPrice: "",
+                            totalPrice: "",
+                        },
+                    ]);
+                    notify();
+                    dispatch(resetEntry());
+                    reset();
+                },
+            });
         } else {
             post(route("POEntry.store"), {
                 onSuccess: () => {
@@ -85,6 +108,7 @@ export default function Index() {
                         },
                     ]);
                     notify();
+                    dispatch(resetEntry());
                     reset();
                 },
             });

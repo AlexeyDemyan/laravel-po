@@ -51,6 +51,26 @@ class POEntryController extends Controller
         return redirect(route('POForm.index'));
     }
 
+    public function update(Request $request, $orderNumber): RedirectResponse
+    {
+        DB::table('p_o_entries')->where('orderNumber', $orderNumber)->update([
+            'company' => $request->company,
+            'date' => $request->date,
+            'supplierAddress' => $request->supplierAddress,
+            'supplierCode' => $request->supplierCode,
+            'supplier' => $request->supplier,
+            'deliveryDate' => $request->deliveryDate,
+            'orderLines' => $request->orderLines,
+            'paymentTerms' => $request->paymentTerms,
+            'otherRemarks' => $request->otherRemarks,
+            'discount' => $request->discount,
+            'netTotalValue' => $request->netTotalValue,
+            'priceIncludesVat' => $request->priceIncludesVat
+        ]);
+
+        return redirect(route('POForm.index'));
+    }
+
     public function destroy($number): RedirectResponse
     {
         DB::table('p_o_entries')->where('orderNumber', $number)->delete();
