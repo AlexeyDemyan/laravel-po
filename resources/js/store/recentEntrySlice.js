@@ -8,10 +8,9 @@ export const recentEntrySlice = createSlice({
     reducers: {
         setRecentEntry: (state, action) => {
             state.value = action.payload;
-            console.log(state.value);
         },
         resetRecentEntry: (state) => {
-            state = null;
+            state.value = null;
         }
     }
 });
