@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetRecentEntry } from "@/store/recentEntrySlice";
 
 export default function Index({ entries }) {
+    console.log(entries);
     const currentUser = usePage().props.auth.user;
     const recentEntry = useSelector((state) => state.recentEntry.value);
     const dispatch = useDispatch();
