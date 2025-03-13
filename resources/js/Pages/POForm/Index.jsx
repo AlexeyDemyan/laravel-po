@@ -90,9 +90,7 @@ export default function Index() {
                             totalPrice: "",
                         },
                     ]);
-                    notify();
                     dispatch(resetEntry());
-                    reset();
                 },
             });
         } else {

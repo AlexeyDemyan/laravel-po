@@ -68,7 +68,7 @@ class POEntryController extends Controller
             'priceIncludesVat' => $request->priceIncludesVat
         ]);
 
-        return redirect(route('POForm.index'));
+        return redirect(route('POEntry.index'));
     }
 
     public function destroy($number): RedirectResponse
