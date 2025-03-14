@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\DB;
 
 class SOController extends Controller
 {
-    // public function index(): Response
-    // {
+    public function index(): Response
+    {
 
-    //     $entries = DB::select('select * from p_o_entries order by orderNumber desc');
+        $entries = DB::select('select * from s_o_entries order by orderNumber desc');
 
-    //     return Inertia::render('POList/Index', [
-    //         'entries' => $entries,
-    //     ]);
-    // }
+        return Inertia::render('SOList/Index', [
+            'entries' => $entries,
+        ]);
+    }
 
     public function store(Request $request): RedirectResponse
     {
@@ -67,10 +67,10 @@ class SOController extends Controller
     //     return redirect(route('POEntry.index'));
     // }
 
-    // public function destroy($number): RedirectResponse
-    // {
-    //     DB::table('p_o_entries')->where('orderNumber', $number)->delete();
+    public function destroy($number): RedirectResponse
+    {
+        DB::table('s_o_entries')->where('orderNumber', $number)->delete();
 
-    //     return redirect(route('POEntry.index'));
-    // }
+        return redirect(route('SOEntry.index'));
+    }
 }
