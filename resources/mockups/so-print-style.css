@@ -24,7 +24,7 @@ div {
 .header {
     align-self: center;
     display: grid;
-    margin-top: 20px;
+    margin-top: 5px;
     grid-template-columns: 375px 375px 200px;
     grid-template-rows: 160px 40px;
     grid-template-areas:
@@ -138,6 +138,7 @@ div {
 
 .section__po-entry-lines table th {
     border: 3px solid black;
+    height: 35px;
 }
 
 .section__po-entry-lines table tr :last-child {
@@ -145,7 +146,7 @@ div {
 }
 
 .section__po-entry-lines table td {
-    height: 25px;
+    height: 35px;
     text-align: center;
     border: 1px solid black;
 }
@@ -155,8 +156,7 @@ div {
 .section__bottom-info {
     display: grid;
     grid-template-columns: 600px 350px;
-    grid-template-rows: 50px 50px 50px 50px;
-    margin-bottom: 150px;
+    grid-template-rows: 50px 50px 50px 100px;
 }
 
 .section__bottom-info div {
@@ -177,13 +177,17 @@ div {
 }
 
 .due-date--text,
-.sub-total-amount--text,
 .payment-terms--text,
-.vat-amount--text,
 .budget-head-ref--text,
-.total-amount--text,
 .order-form-raised-by--text,
 .authorised-by--text {
     width: 300px;
     border-bottom: 1px solid black;
+}
+
+.sub-total-amount--text,
+.vat-amount--text,
+.total-amount--text {
+    width: 150px;
+    border: 1px solid black;
 }
