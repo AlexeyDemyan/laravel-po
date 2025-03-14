@@ -38,18 +38,18 @@ export default function AuthenticatedLayout({ header, children }) {
                                         Users
                                     </NavLink>
                                 )}
-                                <NavLink
+                                {user.id !== 7 && <NavLink
                                     href={route("POForm.index")}
                                     active={route().current("POForm.index")}
                                 >
                                     PO Form
-                                </NavLink>
-                                <NavLink
+                                </NavLink>}
+                                {user.id !== 7 && <NavLink
                                     href={route("POEntry.index")}
                                     active={route().current("POEntry.index")}
                                 >
                                     PO List
-                                </NavLink>
+                                </NavLink>}
                                 {(user.id === 1 || user.name === "Admin") && (
                                     <NavLink
                                         href={route("GRNForm.index")}
@@ -68,6 +68,26 @@ export default function AuthenticatedLayout({ header, children }) {
                                         )}
                                     >
                                         GRN List
+                                    </NavLink>
+                                )}
+                                {(user.id === 7 || user.name === "Admin") && (
+                                    <NavLink
+                                        // href={route("GRNEntry.index")}
+                                        // active={route().current(
+                                        //     "GRNEntry.index"
+                                        // )}
+                                    >
+                                        SO Form
+                                    </NavLink>
+                                )}
+                                {(user.id === 7 || user.name === "Admin") && (
+                                    <NavLink
+                                        // href={route("GRNEntry.index")}
+                                        // active={route().current(
+                                        //     "GRNEntry.index"
+                                        // )}
+                                    >
+                                        SO List
                                     </NavLink>
                                 )}
                             </div>
