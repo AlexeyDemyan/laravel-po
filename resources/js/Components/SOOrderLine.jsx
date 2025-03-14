@@ -9,7 +9,7 @@ export default function SOOrderLine({
     deleteDisabled,
     ...props
 }) {
-    const { product, unitPrice } = line;
+    const { details, price } = line;
 
     return (
         <div
@@ -28,19 +28,18 @@ export default function SOOrderLine({
             </SecondaryButton>
             <TextInput
                 className="mr-[5px] w-[792px]"
-                value={product}
+                value={details}
                 onChange={(e) => {
-                    cb("product", e.target.value);
+                    cb("details", e.target.value);
                 }}
             />
             <TextInput
                 className="mr-[5px]"
-                value={unitPrice}
+                value={price}
                 type="number"
                 step=".0001"
                 onChange={(e) => {
-                    cb("unitPrice", e.target.value);
-                    // cb("totalPrice", (quantity * e.target.value).toFixed(4));
+                    cb("price", e.target.value);
                 }}
             />
         </div>

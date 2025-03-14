@@ -17,14 +17,19 @@ import { dangerButtonClassName } from "@/tailwind-helper";
 
 const maxOrderLinesCount = 10;
 
-// const calculateNetTotalValue = (orderLines, discount) => {
-//     const sumOfTotalPrices = orderLines.reduce(
-//         (accumulator, line) => accumulator + Number(line.totalPrice),
-//         0
-//     );
+const calculateSubTotalAmount = (orderLines) =>
+    orderLines
+        .reduce((accumulator, line) => accumulator + Number(line.price), 0)
+        .toFixed(4);
 
-//     return ((sumOfTotalPrices * (100 - discount)) / 100).toFixed(4);
-// };
+const calculateTotalAmount = (orderLines, vatAmount) => {
+    let totalOrderLinesAmount = orderLines.reduce(
+        (accumulator, line) => accumulator + Number(line.price),
+        0
+    );
+
+    return Number(totalOrderLinesAmount) + Number(vatAmount);
+};
 
 const notify = () => toast.success("SO Submitted Successfully!");
 
@@ -280,11 +285,8 @@ export default function Index() {
                                 setOrderLines([
                                     ...orderLines,
                                     {
-                                        product: "",
-                                        supplierRef: "",
-                                        quantity: "",
-                                        unitPrice: "",
-                                        totalPrice: "",
+                                        details: "",
+                                        price: "",
                                     },
                                 ]);
                                 setData("orderLines", orderLines);
@@ -298,14 +300,10 @@ export default function Index() {
                 <FormItemContainer>
                     <InputLabel
                         htmlFor="subTotalAmount"
-                        value="Net Total Value"
+                        value="Sub Total Amount"
                     />
                     <TextInput
-                        // value={calculateNetTotalValue(
-                        //     orderLines,
-                        //     data.discount
-                        // )}
-                        value={data.subTotalAmount}
+                        value={calculateSubTotalAmount(orderLines)}
                         type="number"
                         step="0.0001"
                         readOnly
@@ -325,16 +323,9 @@ export default function Index() {
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel
-                        htmlFor="totalAmount"
-                        value="Total Amount"
-                    />
+                    <InputLabel htmlFor="totalAmount" value="Total Amount" />
                     <TextInput
-                        // value={calculateNetTotalValue(
-                        //     orderLines,
-                        //     data.discount
-                        // )}
-                        value={data.totalAmount}
+                        value={calculateTotalAmount(orderLines, data.vatAmount)}
                         type="number"
                         step="0.0001"
                         readOnly
@@ -362,7 +353,10 @@ export default function Index() {
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel htmlFor="budgetHeadRef" value="Budget Head Ref" />
+                    <InputLabel
+                        htmlFor="budgetHeadRef"
+                        value="Budget Head Ref"
+                    />
                     <TextInput
                         value={data.budgetHeadRef}
                         onChange={(e) =>
@@ -372,7 +366,10 @@ export default function Index() {
                 </FormItemContainer>
 
                 <FormItemContainer>
-                    <InputLabel htmlFor="orderFormRaisedBy" value="Order Form Raised by" />
+                    <InputLabel
+                        htmlFor="orderFormRaisedBy"
+                        value="Order Form Raised by"
+                    />
                     <TextInput
                         value={data.orderFormRaisedBy}
                         onChange={(e) =>
@@ -398,14 +395,12 @@ export default function Index() {
                         setData((prev) => ({
                             ...prev,
                             orderLines: JSON.stringify(data.orderLines),
-                            // netTotalValue: calculateNetTotalValue(
-                            //     orderLines,
-                            //     data.discount
-                            // ),
+                            subTotalAmount: calculateSubTotalAmount(orderLines),
+                            totalAmount: calculateTotalAmount(orderLines, data.vatAmount)
                         }));
                     }}
                 >
-                    Submit PO
+                    Submit Service Order
                 </PrimaryButton>
                 <ToastContainer position="bottom-left" />
             </form>
