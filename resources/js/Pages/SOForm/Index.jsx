@@ -4,8 +4,8 @@ import FormItemContainer from "@/Components/FormItemContainer";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import PrimaryButton from "@/Components/PrimaryButton";
-import OrderLinesHeader from "@/Components/OrderLinesHeader";
-import OrderLine from "@/Components/OrderLine";
+import SOOrderLinesHeader from "@/Components/SOOrderLinesHeader";
+import SOOrderLine from "@/Components/SOOrderLine";
 import SecondaryButton from "@/Components/SecondaryButton";
 import { Head, useForm, usePage, Link } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
@@ -164,8 +164,8 @@ export default function Index() {
                         value={data.company}
                         onChange={(e) => setData("company", e.target.value)}
                     >
-                        <option value="CassarCamilleri Bottler & Vintners Ltd">
-                            CassarCamilleri Bottler & Vintners Ltd
+                        <option value="CassarCamilleri Bottlers & Vintners Ltd">
+                            CassarCamilleri Bottlers & Vintners Ltd
                         </option>
                         <option value="CassarCamilleri Marketing, Sales & Distribution Ltd">
                             CassarCamilleri Marketing, Sales & Distribution Ltd
@@ -251,12 +251,12 @@ export default function Index() {
                     />
                 </FormItemContainer>
 
-                {/* <FormItemContainer className="!items-start pt-[40px]">
+                <FormItemContainer className="!items-start pt-[40px]">
                     <InputLabel htmlFor="orderLines" value="Order Lines" />
                     <div>
-                        <OrderLinesHeader />
+                        <SOOrderLinesHeader />
                         {orderLines.map((line, index) => (
-                            <OrderLine
+                            <SOOrderLine
                                 key={index}
                                 line={line}
                                 deleteDisabled={index}
@@ -293,7 +293,7 @@ export default function Index() {
                             Add Line
                         </SecondaryButton>
                     </div>
-                </FormItemContainer> */}
+                </FormItemContainer>
 
                 <FormItemContainer>
                     <InputLabel
