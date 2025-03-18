@@ -10,7 +10,6 @@ export default function SOPreviewPrint({ entry, onCancel }) {
     console.log(entry);
 
     const {
-        company,
         supplier,
         supplierAddress,
         telephone,
@@ -43,6 +42,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         width: 795,
                         height: 40,
                         textAlign: "center",
+                        verticalAlign: "bottom",
                         border: "1px solid black",
                     }}
                 >
@@ -53,6 +53,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         width: 150,
                         height: 40,
                         textAlign: "center",
+                        verticalAlign: "bottom",
                         border: "1px solid black",
                     }}
                 >
@@ -534,7 +535,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     display: "flex",
                                     flexDirection: "row",
                                     justifyContent: "center",
-                                    alignItems: "center",
+                                    alignItems: "flex-end",
                                     height: "100%",
                                     width: 190,
                                     borderBottom: "3px solid black",
@@ -595,7 +596,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     display: "flex",
                                     flexDirection: "row",
                                     justifyContent: "center",
-                                    alignItems: "center",
+                                    alignItems: "flex-end",
                                     height: "100%",
                                     width: 190,
                                     borderBottom: "3px solid black",
@@ -656,7 +657,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     display: "flex",
                                     flexDirection: "row",
                                     justifyContent: "center",
-                                    alignItems: "center",
+                                    alignItems: "flex-end",
                                     height: "100%",
                                     width: 190,
                                     borderBottom: "3px solid black",

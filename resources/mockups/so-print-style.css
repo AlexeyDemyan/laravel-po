@@ -148,6 +148,7 @@ div {
 .section__po-entry-lines table td {
     height: 40px;
     text-align: center;
+    vertical-align: bottom;
     border: 1px solid black;
 }
 
