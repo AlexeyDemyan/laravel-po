@@ -72,20 +72,20 @@ export default function AuthenticatedLayout({ header, children }) {
                                 )}
                                 {(user.id === 7 || user.name === "Admin") && (
                                     <NavLink
-                                        // href={route("GRNEntry.index")}
-                                        // active={route().current(
-                                        //     "GRNEntry.index"
-                                        // )}
+                                        href={route("SOForm.index")}
+                                        active={route().current(
+                                            "SOForm.index"
+                                        )}
                                     >
                                         SO Form
                                     </NavLink>
                                 )}
                                 {(user.id === 7 || user.name === "Admin") && (
                                     <NavLink
-                                        // href={route("GRNEntry.index")}
-                                        // active={route().current(
-                                        //     "GRNEntry.index"
-                                        // )}
+                                        href={route("SOEntry.index")}
+                                        active={route().current(
+                                            "SOEntry.index"
+                                        )}
                                     >
                                         SO List
                                     </NavLink>
