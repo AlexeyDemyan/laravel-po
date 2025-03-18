@@ -169,13 +169,13 @@ export default function Index() {
                         value={data.company}
                         onChange={(e) => setData("company", e.target.value)}
                     >
-                        <option value="CassarCamilleri Bottlers & Vintners Ltd">
+                        <option value="CassarCamilleri Bottlers & Vintners Ltd" disabled={true}>
                             CassarCamilleri Bottlers & Vintners Ltd
                         </option>
                         <option value="CassarCamilleri Marketing, Sales & Distribution Ltd">
                             CassarCamilleri Marketing, Sales & Distribution Ltd
                         </option>
-                        <option value="CassarCamilleri Viticulture Ltd">
+                        <option value="CassarCamilleri Viticulture Ltd" disabled={true}>
                             CassarCamilleri Viticulture Ltd
                         </option>
                     </select>
