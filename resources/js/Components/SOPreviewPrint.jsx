@@ -29,6 +29,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
         authorisedBy,
     } = entry;
 
+    const formattedDate = formatDate(date);
+    const formattedDueDate = formatDate(dueDate);
+
     const parsedOrderLines = JSON.parse(orderLines);
     console.log(parsedOrderLines);
 
@@ -144,7 +147,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <p>SERVICE ORDER</p>
-                            <p style={{ paddingLeft: 40}}># 2025-1</p>
+                            <p style={{ paddingLeft: 40 }}>
+                                # {getOrderNumberWithYear(entry)}
+                            </p>
                         </div>
                         <div
                             className="header__logo"
@@ -254,7 +259,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplier}
+                            </div>
                         </div>
                         <div
                             className="supplier-code"
@@ -278,7 +285,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplierCode}
+                            </div>
                         </div>
                         <div
                             className="supplier-address"
@@ -302,7 +311,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplierAddress}
+                            </div>
                         </div>
                         <div
                             className="supplier-vat"
@@ -326,7 +337,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {supplierVATNumber}
+                            </div>
                         </div>
                         <div
                             className="supplier-address"
@@ -372,7 +385,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {formattedDate}
+                            </div>
                         </div>
                         <div
                             className="supplier-telephone"
@@ -396,7 +411,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {telephone}
+                            </div>
                         </div>
                         <div
                             className="supplier-ref"
@@ -420,7 +437,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {referenceNumber}
+                            </div>
                         </div>
                     </div>
                     <div className="section section__po-entry-lines">
@@ -487,7 +506,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {formattedDueDate}
+                            </div>
                         </div>
                         <div
                             className="sub-total-amount"
@@ -510,13 +531,19 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="sub-total-amount--text"
                                 style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                    alignItems: "center",
                                     height: "100%",
                                     width: 190,
                                     borderBottom: "3px solid black",
                                     borderLeft: "3px solid black",
                                     borderRight: "3px solid black",
                                 }}
-                            />
+                            >
+                                {subTotalAmount}
+                            </div>
                         </div>
                         <div
                             className="payment-terms"
@@ -540,7 +567,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {paymentTerms}
+                            </div>
                         </div>
                         <div
                             className="vat-amount"
@@ -563,13 +592,19 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="vat-amount--text"
                                 style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                    alignItems: "center",
                                     height: "100%",
                                     width: 190,
                                     borderBottom: "3px solid black",
                                     borderLeft: "3px solid black",
                                     borderRight: "3px solid black",
                                 }}
-                            />
+                            >
+                                {vatAmount}
+                            </div>
                         </div>
                         <div
                             className="budget-head-ref"
@@ -593,7 +628,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {budgetHeadRef}
+                            </div>
                         </div>
                         <div
                             className="total-amount"
@@ -616,13 +653,19 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="total-amount--text"
                                 style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                    alignItems: "center",
                                     height: "100%",
                                     width: 190,
                                     borderBottom: "3px solid black",
                                     borderLeft: "3px solid black",
                                     borderRight: "3px solid black",
                                 }}
-                            />
+                            >
+                                {totalAmount}
+                            </div>
                         </div>
                         <div
                             className="order-form-raised-by"
@@ -646,7 +689,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {orderFormRaisedBy}
+                            </div>
                         </div>
                         <div
                             className="authorised-by"
@@ -670,7 +715,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            />
+                            >
+                                {authorisedBy}
+                            </div>
                         </div>
                     </div>
                 </div>
