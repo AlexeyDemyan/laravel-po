@@ -29,27 +29,6 @@ export default function SOPreviewPrint({ entry, onCancel }) {
         authorisedBy,
     } = entry;
 
-    const isBottlersAndVintners = () => {
-        if (company === "CassarCamilleri Bottlers & Vintners Ltd") {
-            return <div>&#10004;</div>;
-        }
-        return "";
-    };
-
-    const isCassarCamilleriMarketing = () => {
-        if (company === "CassarCamilleri Marketing, Sales & Distribution Ltd") {
-            return <div>&#10004;</div>;
-        }
-        return "";
-    };
-
-    const isViticulture = () => {
-        if (company === "CassarCamilleri Viticulture Ltd") {
-            return <div>&#10004;</div>;
-        }
-        return "";
-    };
-
     const parsedOrderLines = JSON.parse(orderLines);
     console.log(parsedOrderLines);
 
@@ -496,6 +475,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="due-date--title"
                                 style={{
+                                    lineHeight: 1.2,
                                     width: 240,
                                 }}
                             >
