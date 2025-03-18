@@ -4,7 +4,7 @@ import FormItemContainer from "./FormItemContainer";
 import { useReactToPrint } from "react-to-print";
 import { formatDate, getOrderNumberWithYear } from "@/utils.js";
 
-const orderLinesCount = 13;
+const orderLinesCount = 12;
 
 export default function SOPreviewPrint({ entry, onCancel }) {
     console.log(entry);
@@ -58,8 +58,8 @@ export default function SOPreviewPrint({ entry, onCancel }) {
             <tr key={index}>
                 <td
                     style={{
-                        minWidth: 400,
-                        height: 25,
+                        width: 795,
+                        height: 40,
                         textAlign: "center",
                         border: "1px solid black",
                     }}
@@ -68,34 +68,8 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                 </td>
                 <td
                     style={{
-                        height: 25,
-                        textAlign: "center",
-                        border: "1px solid black",
-                    }}
-                >
-                    {line.details}
-                </td>
-                <td
-                    style={{
-                        height: 25,
-                        textAlign: "center",
-                        border: "1px solid black",
-                    }}
-                >
-                    {line.details}
-                </td>
-                <td
-                    style={{
-                        height: 25,
-                        textAlign: "center",
-                        border: "1px solid black",
-                    }}
-                >
-                    {line.details}
-                </td>
-                <td
-                    style={{
-                        height: 25,
+                        width: 150,
+                        height: 40,
                         textAlign: "center",
                         border: "1px solid black",
                     }}
@@ -142,6 +116,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         display: "flex",
                         flexDirection: "column",
                         size: "7in 9.25in",
+                        marginTop: 50,
                     }}
                 >
                     <header
@@ -190,7 +165,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <p>SERVICE ORDER</p>
-                            <p># 2025-1</p>
+                            <p style={{ paddingLeft: 40}}># 2025-1</p>
                         </div>
                         <div
                             className="header__logo"
@@ -258,9 +233,10 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     className="tickbox"
                                     style={{
                                         marginRight: 20,
-                                        height: 20,
-                                        width: 20,
+                                        height: 24,
+                                        width: 24,
                                         border: "2px solid black",
+                                        verticalAlign: "top",
                                     }}
                                 >
                                     ✔
@@ -489,59 +465,15 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                         style={{
                                             border: "3px solid black",
                                             height: 35,
+                                            width: 150,
                                         }}
                                     >
                                         PRICE
                                     </th>
                                 </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
-                                <tr>
-                                    <td />
-                                    <td />
-                                </tr>
+                                {linesWithDuds.map((line) =>
+                                    renderedOrderLine(line)
+                                )}
                             </tbody>
                         </table>
                     </div>
@@ -588,6 +520,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="sub-total-amount--title"
                                 style={{
+                                    display: "flex",
                                     width: 240,
                                     justifyContent: "flex-end",
                                 }}
@@ -640,6 +573,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="vat-amount--title"
                                 style={{
+                                    display: "flex",
                                     width: 240,
                                     justifyContent: "flex-end",
                                 }}
@@ -692,6 +626,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             <div
                                 className="total-amount--title"
                                 style={{
+                                    display: "flex",
                                     width: 240,
                                     justifyContent: "flex-end",
                                 }}
