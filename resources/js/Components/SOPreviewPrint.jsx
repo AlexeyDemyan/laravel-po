@@ -142,21 +142,56 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         display: "flex",
                         flexDirection: "column",
                         size: "7in 9.25in",
-                        marginTop: "20px",
                     }}
                 >
                     <header
                         className="header"
                         style={{
-                            width: 200,
-                            alignSelf: "center",
                             display: "grid",
-                            gridTemplateColumns: "200px 300px",
+                            alignSelf: "center",
+                            marginTop: 5,
+                            gridTemplateColumns: "375px 375px 200px",
                             gridTemplateRows: "160px 40px",
                             gridTemplateAreas:
-                                '"header__logo header__address" "header__company header__address"',
+                                '"header__address section__title header__logo" "header__address section__title header__company"',
                         }}
                     >
+                        <div
+                            className="header__address"
+                            style={{
+                                gridArea: "header__address",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-evenly",
+                            }}
+                        >
+                            <div>
+                                <div>
+                                    <b>CassarCamilleri Ltd</b>
+                                </div>
+                                <br />
+                                <div>Wills Street</div>
+                                <div>Paola, PLA2234</div>
+                                <div>Malta</div>
+                            </div>
+                            <div>
+                                <div>Tel: 21 824918/19/20</div>
+                                <div>Tel: 23 662401</div>
+                                <div>Tel: 21 820576</div>
+                            </div>
+                        </div>
+                        <div
+                            className="section section__title"
+                            style={{
+                                textAlign: "left",
+                                fontWeight: 700,
+                                fontSize: 26,
+                                marginTop: 20,
+                            }}
+                        >
+                            <p>SERVICE ORDER</p>
+                            <p># 2025-1</p>
+                        </div>
                         <div
                             className="header__logo"
                             style={{ gridArea: "header__logo" }}
@@ -171,7 +206,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                 <defs>
                                     <style
                                         dangerouslySetInnerHTML={{
-                                            __html: "\n                .cls-1 {\n                  fill: #231f20;\n                  stroke-width: 0px;\n                }\n              ",
+                                            __html: "\n                                .cls-1 {\n                                    fill: #231f20;\n                                    stroke-width: 0px;\n                                }\n                            ",
                                         }}
                                     />
                                 </defs>
@@ -191,82 +226,14 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         >
                             CassarCamilleri
                         </div>
-                        <div
-                            className="header__address"
+                    </header>
+                    <div className="section section__company-list">
+                        <ul
                             style={{
-                                gridArea: "header__address",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "space-evenly",
+                                listStyle: "none",
+                                paddingLeft: 0,
                             }}
                         >
-                            <div>
-                                <div>Wills Street</div>
-                                <div>Paola, PLA2234</div>
-                                <div>Malta</div>
-                            </div>
-                            <div>
-                                <div>Tel: 21 824918/19/20</div>
-                                <div>Tel: 23 662401</div>
-                                <div>Tel: 21 820576</div>
-                            </div>
-                        </div>
-                    </header>
-                    <div
-                        className="section section__title"
-                        style={{
-                            display: "grid",
-                            textAlign: "center",
-                            fontWeight: 700,
-                            fontSize: 26,
-                            marginTop: 20,
-                        }}
-                    >
-                        Purchase Order # {getOrderNumberWithYear(entry)}
-                    </div>
-                    <div
-                        className="section section__company-list"
-                        style={{ display: "grid" }}
-                    >
-                        <ul style={{ listStyle: "none" }}>
-                            <li
-                                style={{
-                                    textAlign: "center",
-                                    display: "flex",
-                                    justifyContent: "flex-start",
-                                    alignItems: "center",
-                                    marginBottom: 10,
-                                }}
-                            >
-                                <div
-                                    className="company"
-                                    style={{
-                                        marginRight: 20,
-                                        width: 380,
-                                        textAlign: "left",
-                                    }}
-                                >
-                                    Marsovin Winery Ltd
-                                </div>
-                                <div
-                                    className="tickbox"
-                                    style={{
-                                        marginRight: 20,
-                                        height: 24,
-                                        width: 24,
-                                        border: "2px solid black",
-                                        verticalAlign: "top",
-                                    }}
-                                >
-                                    {isBottlersAndVintners()}
-                                </div>
-                                <div
-                                    className="vat"
-                                    style={{ marginRight: 20 }}
-                                >
-                                    VAT No: MT 1002-2806
-                                </div>
-                            </li>
                             <li
                                 style={{
                                     textAlign: "center",
@@ -291,55 +258,12 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     className="tickbox"
                                     style={{
                                         marginRight: 20,
-                                        height: 24,
-                                        width: 24,
+                                        height: 20,
+                                        width: 20,
                                         border: "2px solid black",
                                     }}
                                 >
-                                    {isCassarCamilleriMarketing()}
-                                </div>
-                                <div
-                                    className="vat"
-                                    style={{ marginRight: 20 }}
-                                >
-                                    VAT No: MT 1432-0606
-                                </div>
-                            </li>
-                            <li
-                                style={{
-                                    textAlign: "center",
-                                    display: "flex",
-                                    justifyContent: "flex-start",
-                                    alignItems: "center",
-                                    marginBottom: 10,
-                                }}
-                            >
-                                <div
-                                    className="company"
-                                    style={{
-                                        marginRight: 20,
-                                        width: 380,
-                                        textAlign: "left",
-                                    }}
-                                >
-                                    Marsovin Viticulture Ltd
-                                </div>
-                                <div
-                                    className="tickbox"
-                                    style={{
-                                        marginRight: 20,
-                                        height: 24,
-                                        width: 24,
-                                        border: "2px solid black",
-                                    }}
-                                >
-                                    {isViticulture()}
-                                </div>
-                                <div
-                                    className="vat"
-                                    style={{ marginRight: 20 }}
-                                >
-                                    VAT No: MT 1373-8006
+                                    ✔
                                 </div>
                             </li>
                         </ul>
@@ -349,8 +273,8 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         style={{
                             display: "grid",
                             gridTemplateColumns: "500px 500px",
-                            gridTemplateRows: "50px 50px 50px",
-                            marginBottom: 20,
+                            gridTemplateRows: "50px 50px 50px 50px",
+                            marginBottom: "50px",
                         }}
                     >
                         <div
@@ -363,9 +287,11 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         >
                             <div
                                 className="supplier-name--title"
-                                style={{ width: 140 }}
+                                style={{
+                                    width: 140,
+                                }}
                             >
-                                Supplier
+                                Supplier Name
                             </div>
                             <div
                                 className="supplier-name--text"
@@ -373,9 +299,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            >
-                                {supplier}
-                            </div>
+                            />
                         </div>
                         <div
                             className="supplier-code"
@@ -387,7 +311,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         >
                             <div
                                 className="supplier-code--title"
-                                style={{ width: 140 }}
+                                style={{
+                                    width: 140,
+                                }}
                             >
                                 Supplier Code
                             </div>
@@ -397,9 +323,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            >
-                                {supplierCode}
-                            </div>
+                            />
                         </div>
                         <div
                             className="supplier-address"
@@ -411,7 +335,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         >
                             <div
                                 className="supplier-address--title"
-                                style={{ width: 140 }}
+                                style={{
+                                    width: 140,
+                                }}
                             >
                                 Address
                             </div>
@@ -421,9 +347,53 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
+                            />
+                        </div>
+                        <div
+                            className="supplier-vat"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="supplier-vat--title"
+                                style={{
+                                    width: 140,
+                                }}
                             >
-                                {supplierAddress}
+                                Supplier VAT No
                             </div>
+                            <div
+                                className="supplier-vat--text"
+                                style={{
+                                    width: 300,
+                                    borderBottom: "1px solid black",
+                                }}
+                            />
+                        </div>
+                        <div
+                            className="supplier-address"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="supplier-address--title"
+                                style={{
+                                    width: 140,
+                                }}
+                            />
+                            <div
+                                className="supplier-address--text"
+                                style={{
+                                    width: 300,
+                                    borderBottom: "1px solid black",
+                                }}
+                            />
                         </div>
                         <div
                             className="supplier-date"
@@ -435,7 +405,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         >
                             <div
                                 className="supplier-date--title"
-                                style={{ width: 140 }}
+                                style={{
+                                    width: 140,
+                                }}
                             >
                                 Date
                             </div>
@@ -445,12 +417,10 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            >
-                                {formatDate(date)}
-                            </div>
+                            />
                         </div>
                         <div
-                            className="supplier-address"
+                            className="supplier-telephone"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -458,11 +428,15 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="supplier-address--title"
-                                style={{ width: 140 }}
-                            />
+                                className="supplier-telephone--title"
+                                style={{
+                                    width: 140,
+                                }}
+                            >
+                                Telephone
+                            </div>
                             <div
-                                className="supplier-address--text"
+                                className="supplier-telephone--text"
                                 style={{
                                     width: 300,
                                     borderBottom: "1px solid black",
@@ -470,7 +444,7 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             />
                         </div>
                         <div
-                            className="supplier-order"
+                            className="supplier-ref"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -478,13 +452,15 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="supplier-order--title"
-                                style={{ width: 140 }}
+                                className="supplier-ref--title"
+                                style={{
+                                    width: 140,
+                                }}
                             >
-                                Order
+                                Reference No
                             </div>
                             <div
-                                className="supplier-order--text"
+                                className="supplier-ref--text"
                                 style={{
                                     width: 300,
                                     borderBottom: "1px solid black",
@@ -492,32 +468,80 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             />
                         </div>
                     </div>
-                    <div
-                        className="section section__po-entry-lines"
-                        style={{ display: "grid" }}
-                    >
-                        <table style={{ borderCollapse: "collapse" }}>
+                    <div className="section section__po-entry-lines">
+                        <table
+                            style={{
+                                borderCollapse: "collapse",
+                                border: "3px solid black",
+                            }}
+                        >
                             <tbody>
                                 <tr>
-                                    <th style={{ border: "3px solid black" }}>
-                                        Product
+                                    <th
+                                        style={{
+                                            border: "3px solid black",
+                                            height: 35,
+                                        }}
+                                    >
+                                        DETAILS OF SERVICE REQUESTED
                                     </th>
-                                    <th style={{ border: "3px solid black" }}>
-                                        Supplier Ref
-                                    </th>
-                                    <th style={{ border: "3px solid black" }}>
-                                        Quantity
-                                    </th>
-                                    <th style={{ border: "3px solid black" }}>
-                                        Unit Price €
-                                    </th>
-                                    <th style={{ border: "3px solid black" }}>
-                                        Total Price €
+                                    <th
+                                        style={{
+                                            border: "3px solid black",
+                                            height: 35,
+                                        }}
+                                    >
+                                        PRICE
                                     </th>
                                 </tr>
-                                {linesWithDuds.map((line) =>
-                                    renderedOrderLine(line)
-                                )}
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td />
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -525,12 +549,12 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         className="section section__bottom-info"
                         style={{
                             display: "grid",
-                            gridTemplateColumns: "500px 500px",
-                            gridTemplateRows: "50px 50px 120px",
+                            gridTemplateColumns: "600px 350px",
+                            gridTemplateRows: "50px 50px 50px 100px",
                         }}
                     >
                         <div
-                            className="delivery-date"
+                            className="due-date"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -538,23 +562,23 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="delivery-date--title"
-                                style={{ width: 140 }}
+                                className="due-date--title"
+                                style={{
+                                    width: 240,
+                                }}
                             >
-                                Delivery Date
+                                Date when / by when Service is to be supplied
                             </div>
                             <div
-                                className="delivery-date--text"
+                                className="due-date--text"
                                 style={{
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            >
-                                {formatDate(deliveryDate)}
-                            </div>
+                            />
                         </div>
                         <div
-                            className="discount"
+                            className="sub-total-amount"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -562,20 +586,24 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="discount--title"
-                                style={{ width: 140 }}
-                            >
-                                Discount
-                            </div>
-                            <div
-                                className="discount--text"
+                                className="sub-total-amount--title"
                                 style={{
-                                    width: 300,
-                                    borderBottom: "1px solid black",
+                                    width: 240,
+                                    justifyContent: "flex-end",
                                 }}
                             >
-                                {discount}
+                                Sub Total &nbsp;
                             </div>
+                            <div
+                                className="sub-total-amount--text"
+                                style={{
+                                    height: "100%",
+                                    width: 190,
+                                    borderBottom: "3px solid black",
+                                    borderLeft: "3px solid black",
+                                    borderRight: "3px solid black",
+                                }}
+                            />
                         </div>
                         <div
                             className="payment-terms"
@@ -587,7 +615,9 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                         >
                             <div
                                 className="payment-terms--title"
-                                style={{ width: 140 }}
+                                style={{
+                                    width: 240,
+                                }}
                             >
                                 Payment Terms
                             </div>
@@ -597,12 +627,10 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            >
-                                {paymentTerms}
-                            </div>
+                            />
                         </div>
                         <div
-                            className="net-total-value"
+                            className="vat-amount"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -610,23 +638,27 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="net-total-value--title"
-                                style={{ width: 140 }}
-                            >
-                                Net Total Value
-                            </div>
-                            <div
-                                className="net-total-value--text"
+                                className="vat-amount--title"
                                 style={{
-                                    width: 300,
-                                    borderBottom: "1px solid black",
+                                    width: 240,
+                                    justifyContent: "flex-end",
                                 }}
                             >
-                                {netTotalValue === 0 ? null : netTotalValue}
+                                VAT &nbsp;
                             </div>
+                            <div
+                                className="vat-amount--text"
+                                style={{
+                                    height: "100%",
+                                    width: 190,
+                                    borderBottom: "3px solid black",
+                                    borderLeft: "3px solid black",
+                                    borderRight: "3px solid black",
+                                }}
+                            />
                         </div>
                         <div
-                            className="other-remarks"
+                            className="budget-head-ref"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -634,23 +666,23 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="other-remarks--title"
-                                style={{ width: 140 }}
+                                className="budget-head-ref--title"
+                                style={{
+                                    width: 240,
+                                }}
                             >
-                                Other Remarks
+                                Budget Head Reference
                             </div>
                             <div
-                                className="other-remarks--text"
+                                className="budget-head-ref--text"
                                 style={{
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
-                            >
-                                {otherRemarks}
-                            </div>
+                            />
                         </div>
                         <div
-                            className="price-includes-vat"
+                            className="total-amount"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
@@ -658,85 +690,74 @@ export default function SOPreviewPrint({ entry, onCancel }) {
                             }}
                         >
                             <div
-                                className="price-includes-vat--title"
-                                style={{ width: 140 }}
+                                className="total-amount--title"
+                                style={{
+                                    width: 240,
+                                    justifyContent: "flex-end",
+                                }}
                             >
-                                Price Includes VAT
+                                Total Amount &nbsp;
                             </div>
                             <div
-                                className="price-includes-vat--text"
+                                className="total-amount--text"
+                                style={{
+                                    height: "100%",
+                                    width: 190,
+                                    borderBottom: "3px solid black",
+                                    borderLeft: "3px solid black",
+                                    borderRight: "3px solid black",
+                                }}
+                            />
+                        </div>
+                        <div
+                            className="order-form-raised-by"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="order-form-raised-by--title"
+                                style={{
+                                    width: 240,
+                                }}
+                            >
+                                Order Form Raised by
+                            </div>
+                            <div
+                                className="order-form-raised-by--text"
                                 style={{
                                     width: 300,
                                     borderBottom: "1px solid black",
                                 }}
+                            />
+                        </div>
+                        <div
+                            className="authorised-by"
+                            style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "end",
+                            }}
+                        >
+                            <div
+                                className="authorised-by--title"
+                                style={{
+                                    width: 240,
+                                }}
                             >
-                                {priceIncludesVat}
+                                Authorised by
                             </div>
+                            <div
+                                className="authorised-by--text"
+                                style={{
+                                    width: 300,
+                                    borderBottom: "1px solid black",
+                                }}
+                            />
                         </div>
                     </div>
-                    <footer
-                        className="footer"
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                        }}
-                    >
-                        <div className="conditions">
-                            <div
-                                className="conditions-header"
-                                style={{
-                                    marginTop: 20,
-                                    height: 20,
-                                    fontWeight: 600,
-                                }}
-                            >
-                                <p>Conditions:</p>
-                            </div>
-                            <div className="conditions-list">
-                                <ul>
-                                    <li>
-                                        <p>
-                                            Please issue Delivery Note / Invoice
-                                            to the above indicated company
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            Please quote P/O No on Delivery Note
-                                            / Invoice
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            For Local Deliveries please deliver
-                                            between 7:30 - 10:45 &amp; 11:30 -
-                                            15:00
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            All deliveries are to be consigned
-                                            to Stores Personnel only
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="signature" style={{ paddingTop: 100 }}>
-                            <p
-                                className="signature-text"
-                                style={{
-                                    textAlign: "center",
-                                    width: 300,
-                                    borderTop: "1px solid black",
-                                    paddingTop: 30,
-                                }}
-                            >
-                                Authorised Signature
-                            </p>
-                        </div>
-                    </footer>
                 </div>
             </div>
 
