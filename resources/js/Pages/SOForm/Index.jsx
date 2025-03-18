@@ -11,8 +11,8 @@ import { Head, useForm, usePage, Link } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrderNumberWithYear } from "@/utils";
-import { resetEntry } from "@/store/counterSlice";
-import { setRecentEntry } from "@/store/recentEntrySlice";
+import { setRecentServiceEntry } from "@/store/recentServiceEntrySlice";
+import { resetServiceOrderEntry } from "@/store/serviceEntrySlice";
 import { dangerButtonClassName } from "@/tailwind-helper";
 
 const maxOrderLinesCount = 10;
@@ -34,31 +34,24 @@ const calculateTotalAmount = (orderLines, vatAmount) => {
 const notify = () => toast.success("SO Submitted Successfully!");
 
 export default function Index() {
-    // const dispatch = useDispatch();
-    // const entryFromState = useSelector((state) => state.entry);
+    const dispatch = useDispatch();
+    const entryFromState = useSelector((state) => state.serviceOrderEntry);
 
     const currentUser = usePage().props.auth.user;
 
-    // const orderLinesFromState = entryFromState.editing
-    //     ? JSON.parse(entryFromState.orderLines)
-    //     : [
-    //           {
-    //               details: "",
-    //               price: "",
-    //           },
-    //       ];
+    const orderLinesFromState = entryFromState.editing
+        ? JSON.parse(entryFromState.orderLines)
+        : [
+              {
+                  details: "",
+                  price: "",
+              },
+          ];
 
-    // const [orderLines, setOrderLines] = useState(orderLinesFromState);
-    const [orderLines, setOrderLines] = useState([
-        {
-            details: "",
-            price: "",
-        },
-    ]);
+    const [orderLines, setOrderLines] = useState(orderLinesFromState);
 
     const formItemSanitizer = (formItem, defaultValue) =>
-        // entryFromState[formItem] || defaultValue;
-        defaultValue;
+        entryFromState[formItem] || defaultValue;
 
     const { data, setData, post, reset, put } = useForm({
         company: formItemSanitizer(
@@ -80,7 +73,7 @@ export default function Index() {
         paymentTerms: formItemSanitizer("paymentTerms", ""),
         budgetHeadRef: formItemSanitizer("budgetHeadRef", ""),
         orderFormRaisedBy: formItemSanitizer("orderFormRaisedBy", ""),
-        authorisedBy: formItemSanitizer("authorisedByorderFormRaisedBy", ""),
+        authorisedBy: formItemSanitizer("authorisedBy", ""),
         userId: currentUser.id,
     });
 
@@ -89,45 +82,30 @@ export default function Index() {
 
         console.log(data);
 
-        // if (entryFromState.editing) {
-        //     // put(route("SOEntry.update", entryFromState.orderNumber), {
-        //     //     onSuccess: () => {
-        //     //         setOrderLines([
-        //     //             // {
-        //     //             //     product: "",
-        //     //             //     supplierRef: "",
-        //     //             //     quantity: "",
-        //     //             //     unitPrice: "",
-        //     //             //     totalPrice: "",
-        //     //             // },
-        //     //             {
-        //     //                 details: "",
-        //     //                 price: "",
-        //     //             },
-        //     //         ]);
-        //     //         // dispatch(resetEntry());
-        //     //         // dispatch(setRecentEntry(entryFromState.orderNumber));
-        //     //     },
-        //     // });
-        // } else
-        {
+        if (entryFromState.editing) {
+            put(route("SOEntry.update", entryFromState.orderNumber), {
+                onSuccess: () => {
+                    setOrderLines([
+                        {
+                            details: "",
+                            price: "",
+                        },
+                    ]);
+                    dispatch(resetServiceOrderEntry());
+                    dispatch(setRecentServiceEntry(entryFromState.orderNumber));
+                },
+            });
+        } else {
             post(route("SOEntry.store"), {
                 onSuccess: () => {
                     setOrderLines([
-                        // {
-                        //     product: "",
-                        //     supplierRef: "",
-                        //     quantity: "",
-                        //     unitPrice: "",
-                        //     totalPrice: "",
-                        // },
                         {
                             details: "",
                             price: "",
                         },
                     ]);
                     notify();
-                    // dispatch(resetEntry());
+                    dispatch(resetServiceOrderEntry());
                     reset();
                 },
             });
@@ -140,11 +118,11 @@ export default function Index() {
             <form
                 onSubmit={submit}
                 className={
-                    "max-w-7xl mx-auto p-4 sm:p-6 lg:p-8"
-                    // + (entryFromState.editing && " bg-red-300")
+                    "max-w-7xl mx-auto p-4 sm:p-6 lg:p-8" +
+                    (entryFromState.editing && " bg-red-300")
                 }
             >
-                {/* {entryFromState.editing && (
+                {entryFromState.editing && (
                     <FormItemContainer>
                         <h1 className="text-3xl">
                             EDITING Order Number:{" "}
@@ -152,16 +130,16 @@ export default function Index() {
                         </h1>
                         <Link
                             as="button"
-                            href={route("POForm.index")}
+                            href={route("SOForm.index")}
                             className={dangerButtonClassName + " ml-[10px]"}
                             onClick={() => {
-                                dispatch(resetEntry());
+                                dispatch(resetServiceOrderEntry());
                             }}
                         >
                             Cancel Edit
                         </Link>
                     </FormItemContainer>
-                )} */}
+                )}
                 <FormItemContainer>
                     <InputLabel htmlFor="company" value="Company" />
                     <select
@@ -169,13 +147,19 @@ export default function Index() {
                         value={data.company}
                         onChange={(e) => setData("company", e.target.value)}
                     >
-                        <option value="CassarCamilleri Bottlers & Vintners Ltd" disabled={true}>
+                        <option
+                            value="CassarCamilleri Bottlers & Vintners Ltd"
+                            disabled={true}
+                        >
                             CassarCamilleri Bottlers & Vintners Ltd
                         </option>
                         <option value="CassarCamilleri Marketing, Sales & Distribution Ltd">
                             CassarCamilleri Marketing, Sales & Distribution Ltd
                         </option>
-                        <option value="CassarCamilleri Viticulture Ltd" disabled={true}>
+                        <option
+                            value="CassarCamilleri Viticulture Ltd"
+                            disabled={true}
+                        >
                             CassarCamilleri Viticulture Ltd
                         </option>
                     </select>
@@ -396,7 +380,10 @@ export default function Index() {
                             ...prev,
                             orderLines: JSON.stringify(data.orderLines),
                             subTotalAmount: calculateSubTotalAmount(orderLines),
-                            totalAmount: calculateTotalAmount(orderLines, data.vatAmount)
+                            totalAmount: calculateTotalAmount(
+                                orderLines,
+                                data.vatAmount
+                            ),
                         }));
                     }}
                 >

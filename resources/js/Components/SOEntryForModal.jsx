@@ -8,14 +8,14 @@ import {
     secondaryButtonClassName,
 } from "@/tailwind-helper";
 import { useDispatch } from "react-redux";
-import { updateEntry } from "@/store/counterSlice";
+import { updateServiceOrderEntry } from "@/store/serviceEntrySlice";
 
 const convertOrderLineToText = (line) => {
     return `${line.details} at ${line.price} EUR \n `;
 };
 
 export default function SOEntryForModal({ entry, onClose, onPrint }) {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const currentUser = usePage().props.auth.user;
 
@@ -84,11 +84,11 @@ export default function SOEntryForModal({ entry, onClose, onPrint }) {
             <FormItemContainer className="justify-around mb-[30px] mt-[30px]">
                 <Link
                     as="button"
-                    // href={route("SOForm.index")}
-                    // className={secondaryButtonClassName}
-                    // onClick={() => {
-                    //     dispatch(updateEntry(entry));
-                    // }}
+                    href={route("SOForm.index")}
+                    className={secondaryButtonClassName}
+                    onClick={() => {
+                        dispatch(updateServiceOrderEntry(entry));
+                    }}
                 >
                     Edit
                 </Link>

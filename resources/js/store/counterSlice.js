@@ -19,7 +19,6 @@ export const counterSlice = createSlice({
             state.paymentTerms = action.payload.paymentTerms;
             state.otherRemarks = action.payload.otherRemarks;
             state.discount = action.payload.discount;
-            state.discount = action.payload.discount;
             state.netTotalValue = action.payload.netTotalValue;
             state.priceIncludesVat = action.payload.priceIncludesVat;
             state.userId = action.payload.userId;

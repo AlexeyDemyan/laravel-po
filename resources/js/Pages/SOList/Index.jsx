@@ -6,13 +6,13 @@ import SOEntryForModal from "@/Components/SOEntryForModal";
 import { Head, usePage } from "@inertiajs/react";
 import SOPreviewPrint from "@/Components/SOPreviewPrint";
 import { useSelector, useDispatch } from "react-redux";
-import { resetRecentEntry } from "@/store/recentEntrySlice";
+import { resetRecentServiceEntry } from "@/store/recentServiceEntrySlice";
 
 export default function Index({ entries }) {
     console.log(entries);
     const currentUser = usePage().props.auth.user;
-    // const recentEntry = useSelector((state) => state.recentEntry.value);
-    // const dispatch = useDispatch();
+    const recentEntry = useSelector((state) => state.recentServiceOrderEntry.value);
+    const dispatch = useDispatch();
     let entriesFiltered;
 
     if (currentUser.name === "Admin") {
@@ -35,17 +35,17 @@ export default function Index({ entries }) {
         setIsPrintVisible(true);
     };
 
-    // if (recentEntry) {
-    //     setTimeout(() => {
-    //         document.getElementById("recentEntry").scrollIntoView({
-    //             behavior: "smooth",
-    //             block: "center",
-    //         });
-    //     }, 1000);
-    //     setTimeout(() => {
-    //         dispatch(resetRecentEntry());
-    //     }, 5000);
-    // }
+    if (recentEntry) {
+        setTimeout(() => {
+            document.getElementById("recentEntry").scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+        }, 1000);
+        setTimeout(() => {
+            dispatch(resetRecentServiceEntry());
+        }, 5000);
+    }
 
     return (
         <AuthenticatedLayout>
@@ -79,16 +79,16 @@ export default function Index({ entries }) {
                     </Modal>
                     {entriesFiltered.map((entry) => (
                         <SOEntry
-                            // className={
-                            //     recentEntry === entry.orderNumber
-                            //         ? " bg-blue-300"
-                            //         : ""
-                            // }
-                            // id={
-                            //     recentEntry === entry.orderNumber
-                            //         ? "recentEntry"
-                            //         : ""
-                            // }
+                            className={
+                                recentEntry === entry.orderNumber
+                                    ? " bg-blue-300"
+                                    : ""
+                            }
+                            id={
+                                recentEntry === entry.orderNumber
+                                    ? "recentEntry"
+                                    : ""
+                            }
                             key={entry.orderNumber}
                             entry={entry}
                             onClick={() => {
