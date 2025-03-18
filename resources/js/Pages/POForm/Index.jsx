@@ -337,7 +337,7 @@ export default function Index() {
                         }));
                     }}
                 >
-                    Submit PO
+                    Submit Purchase Order
                 </PrimaryButton>
                 <ToastContainer position="bottom-left" />
             </form>

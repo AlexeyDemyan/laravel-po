@@ -616,7 +616,7 @@ export default function Index() {
                         }));
                     }}
                 >
-                    Submit GRN
+                    Submit Goods Received Note
                 </PrimaryButton>
                 <ToastContainer position="bottom-left"/>
             </form>
