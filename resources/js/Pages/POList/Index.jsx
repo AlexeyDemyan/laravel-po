@@ -7,21 +7,15 @@ import { Head, usePage } from "@inertiajs/react";
 import PreviewPrint from "@/Components/PreviewPrint";
 import { useSelector, useDispatch } from "react-redux";
 import { resetRecentEntry } from "@/store/recentEntrySlice";
+import {poEntriesFilter} from "@/po-entries-filter";
 
 export default function Index({ entries }) {
     console.log(entries);
     const currentUser = usePage().props.auth.user;
     const recentEntry = useSelector((state) => state.recentEntry.value);
     const dispatch = useDispatch();
-    let entriesFiltered;
 
-    if (currentUser.name === "Admin") {
-        entriesFiltered = entries;
-    } else {
-        entriesFiltered = entries.filter(
-            (entry) => entry.userId === currentUser.id
-        );
-    }
+    let entriesFiltered = poEntriesFilter(currentUser, entries);
 
     const [currentEntry, setCurrentEntry] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
