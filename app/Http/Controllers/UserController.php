@@ -11,37 +11,27 @@ use Inertia\Response;
 
 class UserController extends Controller
 {
-    //
     public function index(): Response
     {
         $users = DB::select('select * from users');
-
-        // foreach( $users as $user) {
-        //     echo $user->name;
-        // }
 
         return Inertia::render('Users/Index', [
             'users' => $users,
         ]);
     }
 
-    // public function show(): Response
-    // {
-    //     $users = DB::select('select * from users');
-
-    //     foreach( $users as $user) {
-    //         echo $user->name;
-    //     }
-
-    //     return Inertia::render('Dashboard', [
-    //         'users' => User::all(),
-    //     ]);
-    // }
-
     public function destroy(User $user): RedirectResponse
     {
+        $restrictedNames = ['Admin', 'admin'];
+
+        if (in_array($user->name, $restrictedNames)) {
+            return redirect()->route('users.index')
+                ->with('error', "You can't delete user: {$user->name}");
+        }
+
         $user->delete();
 
-        return redirect(route('users.index'));
+        return redirect()->route('users.index')
+            ->with('success', "User {$user->name} deleted.");
     }
 }

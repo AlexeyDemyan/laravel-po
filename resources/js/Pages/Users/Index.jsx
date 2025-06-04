@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import User from "@/Components/User";
 import Modal from "@/Components/Modal";
 import UserForModal from "@/Components/UserForModal";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Index({ users }) {
     console.log(users);
+    const flash = usePage().props.flash;
+
+    useEffect(() => {
+        if (flash?.success) {
+            toast.success(flash.success);
+        }
+        if (flash?.error) {
+            toast.error(flash.error);
+        }
+    }, [flash]);
 
     const [currentUser, setCurrentUser] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -48,6 +59,7 @@ export default function Index({ users }) {
                     ))}
                 </div>
             </div>
+            <ToastContainer position="bottom-left" />
         </AuthenticatedLayout>
     );
 }
