@@ -4,6 +4,8 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { useState } from 'react';
+import { registerFormNamevalidation } from '@/utils';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -12,6 +14,11 @@ export default function Register() {
         password: '',
         password_confirmation: '',
     });
+
+    const [nameInvalid, setNameInvalid] = useState(false);
+
+    console.log(errors);
+    console.log(nameInvalid);
 
     const submit = (e) => {
         e.preventDefault();
@@ -36,7 +43,7 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => { setData('name', e.target.value); registerFormNamevalidation(e.target.value, setNameInvalid, errors) }}
                         required
                     />
 
@@ -110,7 +117,7 @@ export default function Register() {
                         Already registered?
                     </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <PrimaryButton className="ms-4" disabled={processing || nameInvalid}>
                         Register
                     </PrimaryButton>
                 </div>
