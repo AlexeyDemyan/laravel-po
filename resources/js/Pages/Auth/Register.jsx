@@ -17,9 +17,6 @@ export default function Register() {
 
     const [nameInvalid, setNameInvalid] = useState(false);
 
-    console.log(errors);
-    console.log(nameInvalid);
-
     const submit = (e) => {
         e.preventDefault();
 
